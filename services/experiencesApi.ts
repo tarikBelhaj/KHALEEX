@@ -1,0 +1,51 @@
+export interface Experience {
+  title: string;
+  description: string;
+  image: string;
+  badge: string;
+  bookingUrl: string;
+}
+
+const experiences: Experience[] = [
+  {
+    title: 'Tour en hélicoptère des Alpes',
+    description: 'Survolez les sommets enneigés et les glaciers.',
+    image: 'https://images.unsplash.com/photo-1502514262256-42d50b9a9f5c?q=80&w=800&auto=format&fit=crop',
+    badge: 'Exclusivité',
+    bookingUrl: 'https://www.getyourguide.com/geneva-l28/panoramic-helicopter-tour-over-the-swiss-alps-from-geneva-t61248/'
+  },
+  {
+    title: 'Atelier d\'horlogerie privée',
+    description: 'Assemblez votre propre montre suisse.',
+    image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=800&auto=format&fit=crop',
+    badge: 'Accès VIP',
+    bookingUrl: 'https://www.airbnb.com/experiences/169811'
+  },
+   {
+    title: 'Shopping de luxe personnalisé',
+    description: 'Accès privé aux boutiques de Genève.',
+    image: 'https://images.unsplash.com/photo-1513031300226-c2fb12de8ade?q=80&w=800&auto=format&fit=crop',
+    badge: 'Sur Invitation',
+    bookingUrl: 'https://www.klook.com/en-US/activity/17300-fox-town-factory-stores-shopping-tour-milan/'
+  },
+  {
+    title: 'Réserver un Jet Privé',
+    description: 'Voyagez en toute discrétion et confort absolu.',
+    image: 'https://images.unsplash.com/photo-1619623512419-6a68aa2337d2?q=80&w=800&auto=format&fit=crop',
+    badge: 'Sur Demande',
+    bookingUrl: 'https://www.netjets.com/en-gb/'
+  },
+];
+
+export const fetchExperiences = (): Promise<Experience[]> => {
+  return new Promise((resolve, reject) => {
+    // Simulate network delay
+    setTimeout(() => {
+       if (Math.random() > 0.98) { // Simulate a rare network error
+        reject(new Error('Failed to connect to the experiences service.'));
+      } else {
+        resolve(experiences);
+      }
+    }, 800); // 0.8 second delay
+  });
+};
