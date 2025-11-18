@@ -1,1 +1,33 @@
 
+[
+  {
+    "make": "Toyota",
+    "name": "Corolla",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "price": 55,
+    "images": ["https://example.com/images/toyota_corolla.jpg"],
+    "bookingUrl": "https://booking.example.com/toyota-corolla"
+  },
+  {
+    "make": "Volkswagen",
+    "name": "Golf",
+    "type": "Hatchback",
+    "seats": 5,
+    "transmission": "Manual",
+    "price": 50,
+    "images": ["https://example.com/images/vw_golf.jpg"],
+    "bookingUrl": "https://booking.example.com/vw-golf"
+  },
+  {
+    "make": "Ford",
+    "name": "Focus",
+    "type": "Sedan",
+    "seats": 5,
+    "transmission": "Automatic",
+    "price": 53,
+    "images": ["https://example.com/images/ford_focus.jpg"],
+    "bookingUrl": "https://booking.example.com/ford-focus"
+  }
+]
