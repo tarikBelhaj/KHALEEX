@@ -27,14 +27,14 @@ const supportItems = [
 
 export const AccountPage: React.FC<PageProps> = ({ onBack }) => {
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in pb-20 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
         <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
           <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
         <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mon Compte</h1>
       </header>
-      <main className="p-4 space-y-6">
+      <main className="p-4 max-w-3xl mx-auto space-y-6">
         
         {/* Profile Card */}
         <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700/80">

@@ -67,7 +67,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80 group">
-      <div className="h-40 relative overflow-hidden">
+      <div className="h-40 md:h-56 relative overflow-hidden">
         {images && images.length > 0 && images[currentImageIndex] ? (
           <img src={images[currentImageIndex]!} alt={name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out" />
         ) : (

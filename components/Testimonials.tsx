@@ -19,17 +19,19 @@ const testimonialsData = [
 export const Testimonials: React.FC = () => {
     return (
         <section>
-            <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Avis Voyageurs</h2>
+            <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 md:gap-6">
                 {testimonialsData.map((testimonial, index) => (
-                    <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700/80 rounded-xl p-3 flex items-center gap-3 flex-shrink-0 shadow-sm">
-                        <img src={testimonial.avatar} alt={testimonial.name} className="w-10 h-10 rounded-full" />
+                    <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700/80 rounded-xl p-4 flex items-center gap-3 flex-shrink-0 shadow-sm w-64 md:w-full">
+                        <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-gray-100 dark:border-gray-700" />
                         <div>
-                            <div className="flex">
+                            <div className="flex mb-1">
                                 {[...Array(5)].map((_, i) => (
                                     <StarIcon key={i} className="w-4 h-4 text-amber-400" />
                                 ))}
                             </div>
-                            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-1">{testimonial.name}</p>
+                            <p className="text-sm font-bold text-gray-800 dark:text-gray-200">{testimonial.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Verified Member</p>
                         </div>
                     </div>
                 ))}

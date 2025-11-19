@@ -4,7 +4,7 @@ import { fetchExperiences, Experience } from '../services/experiencesApi';
 
 
 const ExperienceCardSkeleton: React.FC = () => (
-    <div className="relative w-64 h-40 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+    <div className="relative w-64 md:w-full h-40 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
 );
 
 export const VipExperiences: React.FC = () => {
@@ -33,11 +33,11 @@ export const VipExperiences: React.FC = () => {
             <SparklesIcon className="w-6 h-6 text-amber-500"/>
             VIP Only
           </h2>
-          <button className="text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-1">
+          <button className="text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-1 hover:text-amber-500 transition-colors">
               Voir tout <ChevronRightIcon className="w-4 h-4" />
           </button>
       </div>
-      <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 pb-2">
+      <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 pb-2 md:grid md:grid-cols-3 md:gap-6 md:mx-0 md:px-0 md:overflow-visible">
         {isLoading ? (
              Array.from({ length: 3 }).map((_, index) => <ExperienceCardSkeleton key={index} />)
         ) : (
@@ -45,7 +45,7 @@ export const VipExperiences: React.FC = () => {
               <button 
                 key={index} 
                 onClick={() => window.open(exp.bookingUrl, '_blank')}
-                className="relative w-64 h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white text-left focus:outline-none focus:ring-4 focus:ring-amber-400 focus:ring-opacity-50 transition-transform duration-200 hover:scale-105"
+                className="relative w-64 md:w-full h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white text-left focus:outline-none focus:ring-4 focus:ring-amber-400 focus:ring-opacity-50 transition-transform duration-200 hover:scale-105"
               >
                 <img src={exp.image} alt={exp.title} className="w-full h-full object-cover absolute inset-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -55,7 +55,7 @@ export const VipExperiences: React.FC = () => {
                 </div>
 
                 <div className="relative z-10 p-3 flex flex-col h-full justify-end">
-                  <h3 className="font-bold leading-tight">{exp.title}</h3>
+                  <h3 className="font-bold leading-tight text-lg">{exp.title}</h3>
                   <p className="text-xs opacity-90 mt-1">{exp.description}</p>
                 </div>
               </button>

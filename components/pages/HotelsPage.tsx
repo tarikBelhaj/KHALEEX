@@ -104,7 +104,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
   const renderContent = () => {
     if (isLoading) {
       return (
-        <div className="flex flex-col items-center justify-center text-center h-64">
+        <div className="col-span-full flex flex-col items-center justify-center text-center h-64">
           <SpinnerIcon className="w-12 h-12 text-blue-900 dark:text-amber-400 animate-spin" />
           <p className="mt-4 text-gray-600 dark:text-gray-400">Chargement des hôtels en cours...</p>
         </div>
@@ -113,7 +113,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
 
     if (error) {
        return (
-        <div className="flex flex-col items-center justify-center text-center h-64 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+        <div className="col-span-full flex flex-col items-center justify-center text-center h-64 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
           <InfoIcon className="w-12 h-12 text-red-500" />
           <p className="mt-4 font-semibold text-red-700 dark:text-red-300">Une erreur est survenue</p>
           <p className="text-red-600 dark:text-red-400">{error}</p>
@@ -122,7 +122,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
     }
     
     return (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
           {filteredHotels.length > 0 ? filteredHotels.map((hotel, hotelIndex) => (
             <HotelCard 
                 key={hotel.name} 
@@ -133,7 +133,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
                 onImageUpload={(file, imageIndex) => handleImageUpload(hotelIndex, imageIndex, file)}
             />
           )) : (
-            <div className="text-center py-10">
+            <div className="col-span-full text-center py-10">
                 <p className="text-gray-500 dark:text-gray-400">Aucun hôtel ne correspond à vos critères.</p>
             </div>
           )}
@@ -143,7 +143,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
 
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in pb-20 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-20 p-4 flex items-center justify-between gap-4 border-b dark:border-gray-700">
         <div className="flex items-center gap-4">
             <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -159,9 +159,9 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
             </label>
         </div>
       </header>
-      <main className="p-4">
-        <div className="flex justify-between items-start mb-4 gap-2">
-            <div className="relative flex-grow">
+      <main className="p-4 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-3">
+            <div className="relative w-full md:max-w-lg">
                 <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input 
                     type="text"
@@ -171,15 +171,17 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-400"
                 />
             </div>
-            <button 
-                onClick={() => setFilterModalOpen(true)}
-                className="p-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg"
-                disabled={isLoading || !!error}
-            >
-                <FilterIcon className="w-5 h-5 text-gray-600 dark:text-gray-300"/>
-            </button>
-            <div className="flex-shrink-0 w-24">
-                <CurrencySwitcher currentCurrency={currency} onCurrencyChange={onCurrencyChange} />
+            <div className="flex gap-2 w-full md:w-auto">
+                <button 
+                    onClick={() => setFilterModalOpen(true)}
+                    className="p-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg flex-1 md:flex-none flex justify-center"
+                    disabled={isLoading || !!error}
+                >
+                    <FilterIcon className="w-5 h-5 text-gray-600 dark:text-gray-300"/>
+                </button>
+                <div className="w-32">
+                    <CurrencySwitcher currentCurrency={currency} onCurrencyChange={onCurrencyChange} />
+                </div>
             </div>
         </div>
         

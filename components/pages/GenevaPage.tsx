@@ -137,7 +137,7 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
     };
 
     return (
-        <div className="animate-fade-in">
+        <div className="animate-fade-in pb-20 md:pb-0">
             <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center justify-between gap-4 border-b dark:border-gray-700">
                 <div className="flex items-center gap-4">
                     <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -154,14 +154,14 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                 </div>
             </header>
 
-            <main className="p-4 space-y-8">
+            <main className="p-4 max-w-7xl mx-auto space-y-8">
                 {/* Car Section */}
                 <section>
                     <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Louez une voiture de prestige</h2>
                     <p className="text-gray-600 dark:text-gray-400 mb-4">Découvrez notre flotte exclusive et profitez de la route avec style.</p>
-                    <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 pb-2">
+                    <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 pb-2 md:grid md:grid-cols-4 md:mx-0 md:px-0 md:overflow-visible">
                         {featuredCars.map((car, index) => (
-                            <div key={index} onClick={() => onNavigate('cars')} className="relative w-64 h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white cursor-pointer group">
+                            <div key={index} onClick={() => onNavigate('cars')} className="relative w-64 md:w-full h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white cursor-pointer group">
                                 <img src={car.image} alt={car.name} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                                 <div className="relative z-10 p-3 flex flex-col h-full justify-end">
@@ -172,7 +172,7 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                     </div>
                     <div className="mt-6">
                         <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-3">Nos partenaires de location</h3>
-                        <div className="grid grid-cols-3 gap-4 items-center">
+                        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 items-center">
                             {rentalPartners.map(partner => (
                                 <div key={partner.name} className="bg-white dark:bg-gray-800/50 p-3 rounded-xl border border-gray-200 dark:border-gray-700/60 flex flex-col items-center justify-center h-24">
                                     <img src={partner.logo} alt={partner.name} className="h-8 max-w-full object-contain" />
@@ -186,7 +186,7 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                 {/* At-Home Services Section */}
                 <section>
                     <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">Services Exclusifs à Domicile</h2>
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {services.map((service, index) => (
                            <HomeServiceCard 
                                 key={index} 

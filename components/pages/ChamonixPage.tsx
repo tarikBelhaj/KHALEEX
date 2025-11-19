@@ -63,8 +63,8 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
     const { title, description, image, platform, price, rating, reviews, bookingUrl } = excursion;
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80">
-            <div className="h-48 relative">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80 h-full flex flex-col">
+            <div className="h-48 relative flex-shrink-0">
                 <img src={image} alt={title} className="w-full h-full object-cover" />
                 <div className="absolute top-3 left-3 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm p-1.5 rounded-full shadow-lg">
                     {platform === 'Airbnb' 
@@ -73,7 +73,7 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
                     }
                 </div>
             </div>
-            <div className="p-4">
+            <div className="p-4 flex flex-col flex-grow">
                 <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">{title}</h3>
                 <div className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mt-1">
                     <div className="flex items-center gap-1">
@@ -86,7 +86,7 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
                         <span>Inspiré de {platform}</span>
                     </div>
                 </div>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-3">{description}</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-3 flex-grow">{description}</p>
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <div>
                         <p className="text-gray-600 dark:text-gray-400 text-sm">à partir de</p>
@@ -110,18 +110,18 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
 
 export const ChamonixPage: React.FC<PageProps> = ({ onBack }) => {
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in pb-20 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
         <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
           <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
         <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Excursions à Chamonix</h1>
       </header>
-      <main className="p-4 space-y-6">
+      <main className="p-4 max-w-7xl mx-auto space-y-6">
         <p className="text-gray-600 dark:text-gray-400">
             Découvrez des expériences uniques au pied du Mont-Blanc, inspirées des meilleures offres Airbnb et Klook. Réservez facilement via notre service de conciergerie WhatsApp.
         </p>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {excursions.map((excursion, index) => (
                 <ExcursionCard key={index} excursion={excursion} />
             ))}

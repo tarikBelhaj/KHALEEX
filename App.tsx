@@ -80,19 +80,25 @@ const App: React.FC = () => {
       case 'home':
       default:
         return (
-          <div className="relative">
+          <div className="relative pb-20 md:pb-0">
             <Header />
             <main className="relative">
               <Hero />
-              <div className="px-4 -mt-24 relative z-10">
-                  <div className="grid grid-cols-3 gap-3">
+              <div className="px-4 md:px-8 -mt-24 relative z-10 max-w-7xl mx-auto w-full">
+                  <div className="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-6">
                     {categories.map(cat => <CategoryCard key={cat.title} category={cat} onClick={navigateTo} />)}
                   </div>
               </div>
-              <div className="p-4 mt-8 space-y-6">
+              <div className="p-4 md:p-8 mt-8 space-y-6 md:space-y-10 max-w-7xl mx-auto">
                 <TodaysDeal onNavigate={navigateTo} />
                 <VipExperiences />
-                <PromoBanner />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <PromoBanner />
+                  <div className="hidden md:block">
+                     {/* Placeholder or duplicate banner for grid balance on desktop */}
+                     <PromoBanner />
+                  </div>
+                </div>
                 <Testimonials />
               </div>
             </main>
@@ -103,16 +109,19 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 dark:bg-gray-900 shadow-2xl min-h-screen flex flex-col">
-        <div className="flex-grow pb-16">
-            {renderContent()}
-        </div>
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+        {/* Sidebar for Desktop / BottomNav for Mobile */}
         <BottomNav 
           currentPage={currentPage}
           onNavigate={navigateTo}
           currentTheme={theme} 
           onToggleTheme={toggleTheme} 
         />
+        
+        {/* Main Content Area */}
+        <div className="flex-grow w-full md:ml-64 transition-all duration-300">
+            {renderContent()}
+        </div>
     </div>
   );
 };

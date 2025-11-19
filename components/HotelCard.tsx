@@ -51,7 +51,6 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
 
   // Filter out null/undefined images and memoize the result for performance.
   const validImages = useMemo(() => {
-    console.log(`Processing images for ${name}:`, hotel.images);
     return hotel.images.filter((img): img is string => !!img);
   }, [hotel.images, name]);
   
@@ -96,7 +95,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80 transition-all duration-300 group">
-      <div className="h-48 relative overflow-hidden">
+      <div className="h-48 md:h-64 relative overflow-hidden">
         {validImages.length > 0 ? (
             <img src={validImages[currentImageIndex]} alt={name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out" />
         ) : (
