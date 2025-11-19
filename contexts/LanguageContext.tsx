@@ -41,7 +41,11 @@ const translations: Translations = {
     searchPlaceholder: "Search...",
     discover: "Discover",
     swissConcierge: "Swiss Concierge",
-    guideToSwiss: "Your guide to Switzerland"
+    guideToSwiss: "Your guide to Switzerland",
+    bestRentalDeals: "Best Rental Deals",
+    bestRentalDealsSubtitle: "Drive the best for less",
+    generalExperiencesTitle: "Unforgettable Experiences",
+    generalExperiencesSubtitle: "Discover Switzerland",
   },
   ar: {
     home: 'الرئيسية',
@@ -74,7 +78,11 @@ const translations: Translations = {
     searchPlaceholder: "بحث...",
     discover: "اكتشف",
     swissConcierge: "كونسيرج سويسري",
-    guideToSwiss: "دليلك إلى سويسرا"
+    guideToSwiss: "دليلك إلى سويسرا",
+    bestRentalDeals: "أفضل عروض التأجير",
+    bestRentalDealsSubtitle: "قد الأفضل بأقل الأسعار",
+    generalExperiencesTitle: "تجربة لا تنسى",
+    generalExperiencesSubtitle: "اكتشف سويسرا",
   },
   ru: {
     home: 'Главная',
@@ -107,7 +115,11 @@ const translations: Translations = {
     searchPlaceholder: "Поиск...",
     discover: "Обзор",
     swissConcierge: "Швейцарский консьерж",
-    guideToSwiss: "Ваш гид по Швейцарии"
+    guideToSwiss: "Ваш гид по Швейцарии",
+    bestRentalDeals: "Лучшие предложения аренды",
+    bestRentalDealsSubtitle: "Лучшие авто по лучшим ценам",
+    generalExperiencesTitle: "Незабываемые впечатления",
+    generalExperiencesSubtitle: "Откройте Швейцарию",
   },
   fr: {
     home: 'Accueil',
@@ -140,7 +152,11 @@ const translations: Translations = {
     searchPlaceholder: "Rechercher...",
     discover: "Découvrir",
     swissConcierge: "Conciergerie Suisse",
-    guideToSwiss: "Votre guide en Suisse"
+    guideToSwiss: "Votre guide en Suisse",
+    bestRentalDeals: "Meilleures Offres Location",
+    bestRentalDealsSubtitle: "Roulez le meilleur pour moins",
+    generalExperiencesTitle: "Expériences Inoubliables",
+    generalExperiencesSubtitle: "Découvrez la Suisse",
   }
 };
 

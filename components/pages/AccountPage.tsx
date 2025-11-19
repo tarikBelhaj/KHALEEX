@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
     ArrowLeftIcon, 
@@ -17,6 +18,7 @@ interface PageProps {
   user: User | null;
   onLogin: () => void;
   onLogout: () => void;
+  onNavigate: (page: string) => void;
 }
 
 const menuItems = [
@@ -30,8 +32,15 @@ const supportItems = [
     { text: 'Aide & Support', icon: <QuestionMarkCircleIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
 ];
 
-export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogout }) => {
+export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogout, onNavigate }) => {
   
+  // Legal menu items specific for mobile navigation via Account page
+  const legalItems = [
+    { text: 'Mentions Légales', action: () => onNavigate('legal-notice') },
+    { text: 'CGU', action: () => onNavigate('terms') },
+    { text: 'Confidentialité', action: () => onNavigate('privacy') },
+  ];
+
   if (!user) {
       return (
         <div className="animate-fade-in pb-20 md:pb-0 h-screen flex flex-col">
@@ -55,6 +64,12 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
                     Se connecter / S'inscrire
                 </button>
                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-6">En continuant, vous acceptez nos conditions générales d'utilisation.</p>
+                 
+                 {/* Legal Links for non-logged users */}
+                 <div className="mt-8 flex gap-4 text-xs text-gray-400 justify-center">
+                    <button onClick={() => onNavigate('terms')} className="hover:text-gray-600">CGU</button>
+                    <button onClick={() => onNavigate('privacy')} className="hover:text-gray-600">Confidentialité</button>
+                 </div>
             </main>
         </div>
       );
@@ -105,6 +120,22 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
                     <li key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors rounded-2xl">
                         <div className="flex items-center gap-4">
                             {item.icon}
+                            <span className="font-semibold text-gray-700 dark:text-gray-200">{item.text}</span>
+                        </div>
+                        <ChevronRightIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        {/* Legal Section (Mobile Accessible) */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700/80">
+            <h3 className="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Légal & Conformité</h3>
+             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+                {legalItems.map((item, index) => (
+                    <li key={index} onClick={item.action} className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors last:rounded-b-2xl">
+                        <div className="flex items-center gap-4">
+                            <ShieldCheckIcon className="w-5 h-5 text-gray-400" />
                             <span className="font-semibold text-gray-700 dark:text-gray-200">{item.text}</span>
                         </div>
                         <ChevronRightIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />

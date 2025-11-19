@@ -16,8 +16,12 @@ import { AccountPage } from './components/pages/AccountPage';
 import { GenevaPage } from './components/pages/GenevaPage';
 import { ChamonixPage } from './components/pages/ChamonixPage';
 import { VipPage } from './components/pages/VipPage';
+import { LegalPage } from './components/pages/LegalPage';
 import usePersistentState from './hooks/usePersistentState';
 import { LanguageProvider, useTranslation } from './contexts/LanguageContext';
+import { BestRentalDeals } from './components/BestRentalDeals';
+import { GeneralExperiences } from './components/GeneralExperiences';
+import { Footer } from './components/Footer';
 
 export interface User {
   name: string;
@@ -108,16 +112,27 @@ const InnerApp: React.FC = () => {
       case 'chamonix':
         return <ChamonixPage onBack={() => navigateTo('home')} />;
       case 'account':
-        return <AccountPage onBack={() => navigateTo('home')} user={user} onLogin={handleLogin} onLogout={handleLogout} />;
+        return <AccountPage onBack={() => navigateTo('home')} user={user} onLogin={handleLogin} onLogout={handleLogout} onNavigate={navigateTo} />;
+      // Legal Pages
+      case 'terms':
+        return <LegalPage type="terms" onBack={() => navigateTo('home')} />;
+      case 'privacy':
+        return <LegalPage type="privacy" onBack={() => navigateTo('home')} />;
+      case 'cookies':
+        return <LegalPage type="cookies" onBack={() => navigateTo('home')} />;
+      case 'refund':
+        return <LegalPage type="refund" onBack={() => navigateTo('home')} />;
+      case 'legal-notice':
+        return <LegalPage type="legal-notice" onBack={() => navigateTo('home')} />;
       case 'home':
       default:
         return (
-          <div className="relative pb-28 md:pb-12">
+          <div className="relative pb-28 md:pb-0">
             <Header />
             <main className="relative">
               <Hero user={user} />
               
-              {/* Categories Section - Adjusted negative margin and added spacing */}
+              {/* Categories Section */}
               <div className="px-5 md:px-10 -mt-16 relative z-10 max-w-7xl mx-auto w-full">
                   <div className="flex gap-3 md:gap-8 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible snap-x snap-mandatory md:snap-none">
                     {categories.map(cat => (
@@ -130,9 +145,18 @@ const InnerApp: React.FC = () => {
 
               {/* Main Content Sections with increased spacing */}
               <div className="px-5 md:px-10 mt-12 space-y-12 md:space-y-16 max-w-7xl mx-auto">
-                <VipExperiences onNavigate={navigateTo} />
                 
+                {/* 1. Best Rental Deals */}
+                <BestRentalDeals onNavigate={navigateTo} />
+                
+                {/* 2. Today's Deals */}
                 <TodaysDeal onNavigate={navigateTo} />
+
+                {/* 3. General Experiences */}
+                <GeneralExperiences onNavigate={navigateTo} />
+
+                {/* 4. VIP Only */}
+                <VipExperiences onNavigate={navigateTo} />
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <PromoBanner />
@@ -144,6 +168,7 @@ const InnerApp: React.FC = () => {
                 <Testimonials />
               </div>
             </main>
+            <Footer onNavigate={navigateTo} />
             <FloatingActionButton />
           </div>
         );
