@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { HomeIcon, DealsIcon, AccountIcon, SunIcon, MoonIcon, LogoIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 interface BottomNavProps {
   currentPage: string;
@@ -9,16 +11,16 @@ interface BottomNavProps {
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onNavigate, currentTheme, onToggleTheme }) => {
+    const { t } = useTranslation();
     const dealPages = new Set(['hotels', 'cars', 'experiences']);
 
     const navItems = [
-        { id: 'home', label: 'Home', arabicLabel: 'الرئيسية', icon: <HomeIcon className="w-6 h-6" />, action: () => onNavigate('home') },
-        { id: 'deals', label: 'Deals', arabicLabel: 'عروض', icon: <DealsIcon className="w-6 h-6" />, action: () => onNavigate('hotels') },
-        { id: 'account', label: 'Account', arabicLabel: 'حسابي', icon: <AccountIcon className="w-6 h-6" />, action: () => onNavigate('account') },
+        { id: 'home', label: t('home'), icon: <HomeIcon className="w-6 h-6" />, action: () => onNavigate('home') },
+        { id: 'deals', label: t('deals'), icon: <DealsIcon className="w-6 h-6" />, action: () => onNavigate('hotels') },
+        { id: 'account', label: t('account'), icon: <AccountIcon className="w-6 h-6" />, action: () => onNavigate('account') },
         { 
             id: 'theme',
-            label: 'Mode', 
-            arabicLabel: 'الوضع', 
+            label: t('mode'),
             icon: currentTheme === 'light' 
                 ? <SunIcon className="w-6 h-6" /> 
                 : <MoonIcon className="w-6 h-6" />,
@@ -37,14 +39,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onNavigate, c
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-50 flex-col">
+      <div className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-50 flex-col rtl:right-0 rtl:left-auto rtl:border-l rtl:border-r-0">
         <div className="p-6 flex items-center gap-3 border-b border-gray-100 dark:border-gray-800">
            <div className="bg-blue-900 p-1.5 rounded-lg shadow-md">
                 <LogoIcon className="w-8 h-8 text-white" />
            </div>
            <div>
                 <h1 className="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Khaleex</h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Swiss Concierge</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t('swissConcierge')}</p>
            </div>
         </div>
 
@@ -62,7 +64,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onNavigate, c
                     <div className={`${isActive(item.id) ? 'scale-110' : 'group-hover:scale-110'} transition-transform`}>
                         {item.icon}
                     </div>
-                    <div className="text-left">
+                    <div className="text-left rtl:text-right">
                         <span className={`block text-sm font-semibold ${isActive(item.id) ? 'font-bold' : ''}`}>{item.label}</span>
                     </div>
                 </button>
@@ -92,7 +94,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onNavigate, c
               {item.icon}
               <div className="flex flex-col items-center">
                 <span className="text-[10px] leading-tight font-medium">{item.label}</span>
-                <span className="text-[10px] leading-tight font-light">{item.arabicLabel}</span>
               </div>
             </button>
           ))}

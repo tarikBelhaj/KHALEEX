@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { ArrowLeftIcon, SearchIcon, FilterIcon, SpinnerIcon, InfoIcon } from '../Icons';
 import { HotelCard, Hotel } from '../HotelCard';
@@ -113,7 +114,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
 
     if (error) {
        return (
-        <div className="col-span-full flex flex-col items-center justify-center text-center h-64 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+        <div className="col-span-full flex flex-col items-center justify-center text-center h-64 bg-red-50 dark:bg-red-900/20 p-4 rounded-2xl">
           <InfoIcon className="w-12 h-12 text-red-500" />
           <p className="mt-4 font-semibold text-red-700 dark:text-red-300">Une erreur est survenue</p>
           <p className="text-red-600 dark:text-red-400">{error}</p>
@@ -122,7 +123,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
     }
     
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
           {filteredHotels.length > 0 ? filteredHotels.map((hotel, hotelIndex) => (
             <HotelCard 
                 key={hotel.name} 
@@ -143,10 +144,10 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
 
 
   return (
-    <div className="animate-fade-in pb-20 md:pb-0">
+    <div className="animate-fade-in pb-28 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-20 p-4 flex items-center justify-between gap-4 border-b dark:border-gray-700">
         <div className="flex items-center gap-4">
-            <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+            <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
               <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             </button>
             <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Hôtels d'exception</h1>
@@ -159,8 +160,8 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
             </label>
         </div>
       </header>
-      <main className="p-4 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-3">
+      <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
             <div className="relative w-full md:max-w-lg">
                 <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input 
@@ -168,18 +169,18 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
                     placeholder="Rechercher (hôtel, ville, service...)"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-sm"
                 />
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
+            <div className="flex gap-3 w-full md:w-auto">
                 <button 
                     onClick={() => setFilterModalOpen(true)}
-                    className="p-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg flex-1 md:flex-none flex justify-center"
+                    className="p-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl flex-1 md:flex-none flex justify-center hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                     disabled={isLoading || !!error}
                 >
                     <FilterIcon className="w-5 h-5 text-gray-600 dark:text-gray-300"/>
                 </button>
-                <div className="w-32">
+                <div className="w-36">
                     <CurrencySwitcher currentCurrency={currency} onCurrencyChange={onCurrencyChange} />
                 </div>
             </div>

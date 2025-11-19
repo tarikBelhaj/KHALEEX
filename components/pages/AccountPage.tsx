@@ -7,11 +7,16 @@ import {
     ShieldCheckIcon, 
     QuestionMarkCircleIcon, 
     ArrowRightOnRectangleIcon,
-    AccountIcon
+    AccountIcon,
+    UserGroupIcon
 } from '../Icons';
+import { User } from '../../App';
 
 interface PageProps {
   onBack: () => void;
+  user: User | null;
+  onLogin: () => void;
+  onLogout: () => void;
 }
 
 const menuItems = [
@@ -25,7 +30,36 @@ const supportItems = [
     { text: 'Aide & Support', icon: <QuestionMarkCircleIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
 ];
 
-export const AccountPage: React.FC<PageProps> = ({ onBack }) => {
+export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogout }) => {
+  
+  if (!user) {
+      return (
+        <div className="animate-fade-in pb-20 md:pb-0 h-screen flex flex-col">
+             <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
+                <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                </button>
+                <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mon Compte</h1>
+            </header>
+            <main className="flex-grow flex flex-col items-center justify-center p-6 text-center max-w-md mx-auto w-full">
+                <div className="bg-amber-100 dark:bg-amber-900/30 p-4 rounded-full mb-6">
+                    <UserGroupIcon className="w-12 h-12 text-amber-600 dark:text-amber-400" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Bienvenue sur Khaleex</h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-8">Connectez-vous pour accéder à votre profil VIP et débloquer des offres exclusives.</p>
+                
+                <button 
+                    onClick={onLogin}
+                    className="w-full bg-blue-900 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200"
+                >
+                    Se connecter / S'inscrire
+                </button>
+                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-6">En continuant, vous acceptez nos conditions générales d'utilisation.</p>
+            </main>
+        </div>
+      );
+  }
+
   return (
     <div className="animate-fade-in pb-20 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
@@ -39,13 +73,13 @@ export const AccountPage: React.FC<PageProps> = ({ onBack }) => {
         {/* Profile Card */}
         <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700/80">
             <img 
-                src="https://randomuser.me/api/portraits/men/32.jpg" 
+                src={user.avatar} 
                 alt="User Avatar" 
-                className="w-16 h-16 rounded-full border-2 border-amber-400"
+                className="w-16 h-16 rounded-full border-2 border-amber-400 object-cover"
             />
             <div>
-                <h2 className="font-bold text-lg text-gray-900 dark:text-gray-100">Ahmed Al-Fahim</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">ahmed.alfahim@email.com</p>
+                <h2 className="font-bold text-lg text-gray-900 dark:text-gray-100">{user.name}</h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{user.email}</p>
             </div>
         </div>
 
@@ -81,7 +115,10 @@ export const AccountPage: React.FC<PageProps> = ({ onBack }) => {
 
         {/* Logout Button */}
         <div className="mt-4">
-             <button className="w-full flex items-center justify-center gap-3 p-4 bg-red-50 dark:bg-red-900/30 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors">
+             <button 
+                onClick={onLogout}
+                className="w-full flex items-center justify-center gap-3 p-4 bg-red-50 dark:bg-red-900/30 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
+             >
                 <ArrowRightOnRectangleIcon className="w-6 h-6 text-red-600 dark:text-red-400" />
                 <span className="font-bold text-red-600 dark:text-red-400">Se déconnecter</span>
             </button>

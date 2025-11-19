@@ -1,3 +1,4 @@
+
 export interface Experience {
   title: string;
   description: string;
@@ -38,14 +39,10 @@ const experiences: Experience[] = [
 ];
 
 export const fetchExperiences = (): Promise<Experience[]> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Simulate network delay
     setTimeout(() => {
-       if (Math.random() > 0.98) { // Simulate a rare network error
-        reject(new Error('Failed to connect to the experiences service.'));
-      } else {
-        resolve(experiences);
-      }
+      resolve(experiences);
     }, 800); // 0.8 second delay
   });
 };

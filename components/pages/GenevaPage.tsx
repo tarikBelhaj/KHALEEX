@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { ArrowLeftIcon, ChefHatIcon, DumbbellIcon, WhatsAppIcon, CameraIcon, PhotoIcon } from '../Icons';
 import usePersistentState from '../../hooks/usePersistentState';
@@ -69,7 +70,7 @@ const HomeServiceCard: React.FC<{
     };
 
     return (
-        <div className="relative w-full h-48 rounded-2xl overflow-hidden shadow-lg text-white group">
+        <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg text-white group">
             {service.image ? (
                 <img src={service.image} alt={service.name} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-300" />
             ) : (
@@ -80,7 +81,7 @@ const HomeServiceCard: React.FC<{
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-            <div className="absolute top-3 left-3 bg-white/20 backdrop-blur-sm p-2 rounded-full shadow-md">
+            <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm p-2.5 rounded-full shadow-md">
                 <ServiceIcon icon={service.icon} />
             </div>
 
@@ -95,7 +96,7 @@ const HomeServiceCard: React.FC<{
                     />
                     <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="absolute top-2 right-2 bg-black/60 text-white text-xs font-semibold py-1 px-2.5 rounded-md flex items-center gap-1.5 backdrop-blur-sm hover:bg-black/80 transition-colors"
+                        className="absolute top-3 right-3 bg-black/60 text-white text-xs font-semibold py-1.5 px-3 rounded-lg flex items-center gap-1.5 backdrop-blur-sm hover:bg-black/80 transition-colors"
                     >
                         <CameraIcon className="w-4 h-4" />
                         Changer
@@ -103,15 +104,15 @@ const HomeServiceCard: React.FC<{
                 </>
             )}
 
-            <div className="relative z-10 p-4 flex flex-col h-full justify-end">
+            <div className="relative z-10 p-6 flex flex-col h-full justify-end">
                  <div className="flex justify-between items-end">
-                    <div className="max-w-[60%]">
-                        <h3 className="font-bold text-lg leading-tight">{service.name}</h3>
-                        <p className="text-sm opacity-90 mt-1">{service.description}</p>
+                    <div className="max-w-[70%]">
+                        <h3 className="font-bold text-xl leading-tight mb-1">{service.name}</h3>
+                        <p className="text-sm opacity-90 leading-relaxed">{service.description}</p>
                     </div>
                     <button
                         onClick={onBook}
-                        className="bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-white/30 transition-colors flex-shrink-0 ml-4"
+                        className="bg-white/20 backdrop-blur-sm text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-md hover:bg-white/30 transition-colors flex-shrink-0 ml-4"
                     >
                         Réserver
                     </button>
@@ -137,10 +138,10 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
     };
 
     return (
-        <div className="animate-fade-in pb-20 md:pb-0">
+        <div className="animate-fade-in pb-28 md:pb-0">
             <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center justify-between gap-4 border-b dark:border-gray-700">
                 <div className="flex items-center gap-4">
-                    <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                         <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                     </button>
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Services Exclusifs à Genève</h1>
@@ -154,29 +155,29 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                 </div>
             </header>
 
-            <main className="p-4 max-w-7xl mx-auto space-y-8">
+            <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-12">
                 {/* Car Section */}
                 <section>
-                    <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Louez une voiture de prestige</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">Découvrez notre flotte exclusive et profitez de la route avec style.</p>
-                    <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 pb-2 md:grid md:grid-cols-4 md:mx-0 md:px-0 md:overflow-visible">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Louez une voiture de prestige</h2>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl">Découvrez notre flotte exclusive et profitez de la route avec style.</p>
+                    <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4 md:grid md:grid-cols-4 md:mx-0 md:px-0 md:overflow-visible">
                         {featuredCars.map((car, index) => (
-                            <div key={index} onClick={() => onNavigate('cars')} className="relative w-64 md:w-full h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white cursor-pointer group">
+                            <div key={index} onClick={() => onNavigate('cars')} className="relative w-72 md:w-full h-48 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white cursor-pointer group">
                                 <img src={car.image} alt={car.name} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                                <div className="relative z-10 p-3 flex flex-col h-full justify-end">
-                                    <h3 className="font-bold leading-tight">{car.name}</h3>
+                                <div className="relative z-10 p-4 flex flex-col h-full justify-end">
+                                    <h3 className="font-bold leading-tight text-lg">{car.name}</h3>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <div className="mt-6">
-                        <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-3">Nos partenaires de location</h3>
-                        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 items-center">
+                    <div className="mt-8">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Nos partenaires de location</h3>
+                        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 items-center">
                             {rentalPartners.map(partner => (
-                                <div key={partner.name} className="bg-white dark:bg-gray-800/50 p-3 rounded-xl border border-gray-200 dark:border-gray-700/60 flex flex-col items-center justify-center h-24">
-                                    <img src={partner.logo} alt={partner.name} className="h-8 max-w-full object-contain" />
-                                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mt-2 text-center">{partner.name}</p>
+                                <div key={partner.name} className="bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700/60 flex flex-col items-center justify-center h-28 shadow-sm">
+                                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-full object-contain" />
+                                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mt-3 text-center">{partner.name}</p>
                                 </div>
                             ))}
                         </div>
@@ -185,8 +186,8 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
 
                 {/* At-Home Services Section */}
                 <section>
-                    <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">Services Exclusifs à Domicile</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Services Exclusifs à Domicile</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {services.map((service, index) => (
                            <HomeServiceCard 
                                 key={index} 

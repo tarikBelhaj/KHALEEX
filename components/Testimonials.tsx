@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { StarIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const testimonialsData = [
     {
@@ -17,9 +19,10 @@ const testimonialsData = [
 ];
 
 export const Testimonials: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <section>
-             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Avis Voyageurs</h2>
+             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{t('testimonials')}</h2>
             <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 md:gap-6">
                 {testimonialsData.map((testimonial, index) => (
                     <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700/80 rounded-xl p-4 flex items-center gap-3 flex-shrink-0 shadow-sm w-64 md:w-full">
@@ -31,7 +34,7 @@ export const Testimonials: React.FC = () => {
                                 ))}
                             </div>
                             <p className="text-sm font-bold text-gray-800 dark:text-gray-200">{testimonial.name}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Verified Member</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{t('verifiedMember')}</p>
                         </div>
                     </div>
                 ))}

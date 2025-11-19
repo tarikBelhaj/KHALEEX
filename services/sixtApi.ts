@@ -1,3 +1,4 @@
+
 import { Car } from '../components/CarCard';
 
 // This is a mock API service to simulate fetching data from a real car rental API like Sixt.
@@ -100,25 +101,20 @@ const mockApiResponse: CarFromApi[] = [
 export const fetchSixtVehicles = (location: string): Promise<Car[]> => {
   console.log(`Fetching vehicles for location: ${location}...`);
   
-  return new Promise((resolve, reject) => {
-    // Simulate network delay
+  return new Promise((resolve) => {
     setTimeout(() => {
-      if (Math.random() > 0.95) { // Simulate a rare network error
-        reject(new Error('Failed to connect to the rental service.'));
-      } else {
-        // Transform the mock API response to the `Car` interface our components expect.
-        const transformedData: Car[] = mockApiResponse.map(apiCar => ({
-          make: apiCar.make,
-          name: apiCar.series,
-          type: `${apiCar.make} ${apiCar.model}`,
-          seats: apiCar.seats,
-          transmission: apiCar.transmission,
-          price: apiCar.price.amount,
-          images: [apiCar.images.large], // Our component expects an array of strings
-          bookingUrl: apiCar.bookingUrl,
-        }));
-        resolve(transformedData);
-      }
+      // Transform the mock API response to the `Car` interface our components expect.
+      const transformedData: Car[] = mockApiResponse.map(apiCar => ({
+        make: apiCar.make,
+        name: apiCar.series,
+        type: `${apiCar.make} ${apiCar.model}`,
+        seats: apiCar.seats,
+        transmission: apiCar.transmission,
+        price: apiCar.price.amount,
+        images: [apiCar.images.large], // Our component expects an array of strings
+        bookingUrl: apiCar.bookingUrl,
+      }));
+      resolve(transformedData);
     }, 1500); // 1.5 second delay
   });
 };

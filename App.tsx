@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -14,39 +15,68 @@ import { ExperiencesPage } from './components/pages/ExperiencesPage';
 import { AccountPage } from './components/pages/AccountPage';
 import { GenevaPage } from './components/pages/GenevaPage';
 import { ChamonixPage } from './components/pages/ChamonixPage';
+import { VipPage } from './components/pages/VipPage';
+import usePersistentState from './hooks/usePersistentState';
+import { LanguageProvider, useTranslation } from './contexts/LanguageContext';
 
-const categories: Category[] = [
-  {
-    title: "Hôtels d'exception",
-    subtitle: 'Séjours mémorables',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
-    badge1: 'Jusqu\'à -40%',
-    page: 'hotels'
-  },
-  {
-    title: 'Voitures de prestige',
-    subtitle: 'Partenaires: Sixt & Prestige',
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop',
-    badge1: 'Tarifs Exclusifs',
-    page: 'cars'
-  },
-  {
-    title: 'Expériences Inoubliables',
-    subtitle: 'Aventures sur mesure',
-    image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=800&auto=format&fit=crop',
-    badge1: 'Accès VIP',
-    page: 'experiences'
-  }
-];
+export interface User {
+  name: string;
+  email: string;
+  avatar: string;
+}
 
-
-const App: React.FC = () => {
+// Extracted InnerApp to use hooks from LanguageProvider
+const InnerApp: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [currency, setCurrency] = useState('CHF');
   const [theme, setTheme] = useState('light');
+  const { t } = useTranslation();
+  
+  // User state management (using persistent state to keep login across refreshes for demo)
+  const [user, setUser] = usePersistentState<User | null>('khaleex_user_v2', null);
+
+  // Define categories inside the component to use translation
+  const categories: Category[] = [
+    {
+      title: t('hotelsTitle'),
+      subtitle: t('hotelsSubtitle'),
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
+      badge1: t('hotelsBadge'),
+      page: 'hotels'
+    },
+    {
+      title: t('carsTitle'),
+      subtitle: t('carsSubtitle'),
+      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop',
+      badge1: t('carsBadge'),
+      page: 'cars'
+    },
+    {
+      title: t('experiencesTitle'),
+      subtitle: t('experiencesSubtitle'),
+      image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=800&auto=format&fit=crop',
+      badge1: t('experiencesBadge'),
+      page: 'experiences'
+    }
+  ];
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  // Mock login function
+  const handleLogin = () => {
+    setUser({
+        name: 'Ahmed',
+        email: 'ahmed.alfahim@email.com',
+        avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+    });
+    navigateTo('home');
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    navigateTo('home');
   };
 
   useEffect(() => {
@@ -71,34 +101,46 @@ const App: React.FC = () => {
         return <CarsPage onBack={() => navigateTo('home')} currency={currency} onCurrencyChange={setCurrency} />;
       case 'experiences':
         return <ExperiencesPage onBack={() => navigateTo('home')} />;
+      case 'vip-only':
+        return <VipPage onBack={() => navigateTo('home')} />;
       case 'geneva':
         return <GenevaPage onBack={() => navigateTo('home')} onNavigate={navigateTo} />;
       case 'chamonix':
         return <ChamonixPage onBack={() => navigateTo('home')} />;
       case 'account':
-        return <AccountPage onBack={() => navigateTo('home')} />;
+        return <AccountPage onBack={() => navigateTo('home')} user={user} onLogin={handleLogin} onLogout={handleLogout} />;
       case 'home':
       default:
         return (
-          <div className="relative pb-20 md:pb-0">
+          <div className="relative pb-28 md:pb-12">
             <Header />
             <main className="relative">
-              <Hero />
-              <div className="px-4 md:px-8 -mt-24 relative z-10 max-w-7xl mx-auto w-full">
-                  <div className="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-6">
-                    {categories.map(cat => <CategoryCard key={cat.title} category={cat} onClick={navigateTo} />)}
+              <Hero user={user} />
+              
+              {/* Categories Section - Adjusted negative margin and added spacing */}
+              <div className="px-5 md:px-10 -mt-16 relative z-10 max-w-7xl mx-auto w-full">
+                  <div className="flex gap-3 md:gap-8 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible snap-x snap-mandatory md:snap-none">
+                    {categories.map(cat => (
+                        <div key={cat.title} className="w-36 sm:w-48 md:w-full flex-shrink-0 snap-center">
+                            <CategoryCard category={cat} onClick={navigateTo} />
+                        </div>
+                    ))}
                   </div>
               </div>
-              <div className="p-4 md:p-8 mt-8 space-y-6 md:space-y-10 max-w-7xl mx-auto">
+
+              {/* Main Content Sections with increased spacing */}
+              <div className="px-5 md:px-10 mt-12 space-y-12 md:space-y-16 max-w-7xl mx-auto">
+                <VipExperiences onNavigate={navigateTo} />
+                
                 <TodaysDeal onNavigate={navigateTo} />
-                <VipExperiences />
-                <div className="grid md:grid-cols-2 gap-6">
+                
+                <div className="grid md:grid-cols-2 gap-8">
                   <PromoBanner />
                   <div className="hidden md:block">
-                     {/* Placeholder or duplicate banner for grid balance on desktop */}
                      <PromoBanner />
                   </div>
                 </div>
+                
                 <Testimonials />
               </div>
             </main>
@@ -109,7 +151,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col md:flex-row overflow-x-hidden transition-colors duration-200">
         {/* Sidebar for Desktop / BottomNav for Mobile */}
         <BottomNav 
           currentPage={currentPage}
@@ -123,6 +165,14 @@ const App: React.FC = () => {
             {renderContent()}
         </div>
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <InnerApp />
+    </LanguageProvider>
   );
 };
 

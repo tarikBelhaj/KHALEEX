@@ -1,3 +1,4 @@
+
 import { Hotel } from '../components/HotelCard';
 
 // This is a mock API service to simulate fetching data from a real hotel booking API like Booking.com.
@@ -52,14 +53,9 @@ const mockHotelsData: Hotel[] = [
 
 
 export const fetchHotels = (): Promise<Hotel[]> => {
-  return new Promise((resolve, reject) => {
-    // Simulate network delay
+  return new Promise((resolve) => {
     setTimeout(() => {
-      if (Math.random() > 0.98) { // Simulate a rare network error
-        reject(new Error('Failed to connect to the hotel booking service.'));
-      } else {
-        resolve(mockHotelsData);
-      }
+      resolve(mockHotelsData);
     }, 1200); // 1.2 second delay
   });
 };

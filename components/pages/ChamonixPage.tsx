@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowLeftIcon, AirbnbLogoIcon, KlookLogoIcon, StarIcon, UserGroupIcon } from '../Icons';
 
@@ -63,22 +64,22 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
     const { title, description, image, platform, price, rating, reviews, bookingUrl } = excursion;
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80 h-full flex flex-col">
-            <div className="h-48 relative flex-shrink-0">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-200/80 dark:border-gray-700/80 h-full flex flex-col transition-transform hover:scale-[1.01]">
+            <div className="h-56 relative flex-shrink-0">
                 <img src={image} alt={title} className="w-full h-full object-cover" />
-                <div className="absolute top-3 left-3 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm p-1.5 rounded-full shadow-lg">
+                <div className="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-full shadow-lg">
                     {platform === 'Airbnb' 
                         ? <AirbnbLogoIcon className="w-6 h-6 text-pink-500" />
                         : <KlookLogoIcon className="w-6 h-6 text-orange-500" />
                     }
                 </div>
             </div>
-            <div className="p-4 flex flex-col flex-grow">
-                <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">{title}</h3>
-                <div className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <div className="p-6 flex flex-col flex-grow">
+                <h3 className="font-bold text-xl text-gray-800 dark:text-gray-100 mb-2">{title}</h3>
+                <div className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mb-3">
                     <div className="flex items-center gap-1">
                         <StarIcon className="w-4 h-4 text-amber-500" />
-                        <span className="font-semibold">{rating.toFixed(1)}</span>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">{rating.toFixed(1)}</span>
                         <span>({reviews} avis)</span>
                     </div>
                      <div className="flex items-center gap-1.5">
@@ -86,18 +87,18 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
                         <span>Inspiré de {platform}</span>
                     </div>
                 </div>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-3 flex-grow">{description}</p>
-                <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">{description}</p>
+                <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                     <div>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">à partir de</p>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">à partir de</p>
                         <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">
                            €{price}
-                           <span className="font-normal text-sm"> /pers.</span>
+                           <span className="font-normal text-sm text-gray-500"> /pers.</span>
                         </p>
                     </div>
                     <button 
                         onClick={() => window.open(bookingUrl, '_blank')}
-                        className="bg-blue-900 text-white font-bold py-2.5 px-6 text-sm rounded-lg shadow-md transition-transform duration-200 hover:scale-105"
+                        className="bg-blue-900 text-white font-bold py-3 px-8 text-sm rounded-xl shadow-md transition-transform duration-200 hover:scale-105"
                     >
                         Réserver
                     </button>
@@ -110,18 +111,18 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
 
 export const ChamonixPage: React.FC<PageProps> = ({ onBack }) => {
   return (
-    <div className="animate-fade-in pb-20 md:pb-0">
+    <div className="animate-fade-in pb-28 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
-        <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+        <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
           <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
         <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Excursions à Chamonix</h1>
       </header>
-      <main className="p-4 max-w-7xl mx-auto space-y-6">
-        <p className="text-gray-600 dark:text-gray-400">
+      <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-8">
+        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
             Découvrez des expériences uniques au pied du Mont-Blanc, inspirées des meilleures offres Airbnb et Klook. Réservez facilement via notre service de conciergerie WhatsApp.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {excursions.map((excursion, index) => (
                 <ExcursionCard key={index} excursion={excursion} />
             ))}

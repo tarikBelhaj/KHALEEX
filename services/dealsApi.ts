@@ -1,3 +1,4 @@
+
 export type Deal = {
     id: string;
     title: string;
@@ -50,14 +51,9 @@ const mockDeals: Deal[] = [
 
 
 export const fetchTodaysDeals = (): Promise<Deal[]> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-        // Simulate a potential API error
-        if (Math.random() > 0.95) {
-            reject(new Error("API Error: Could not fetch today's deals."));
-        } else {
-            resolve(mockDeals);
-        }
+        resolve(mockDeals);
     }, 500);
   });
 };
