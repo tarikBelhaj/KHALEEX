@@ -25,7 +25,7 @@ const experiences: Experience[] = [
    {
     title: 'Shopping de luxe personnalisé',
     description: 'Accès privé aux boutiques de Genève.',
-    image: 'https://images.unsplash.com/photo-1513031300226-c2fb12de8ade?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555529669-2269763671c0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     badge: 'Sur Invitation',
     bookingUrl: 'https://www.klook.com/en-US/activity/17300-fox-town-factory-stores-shopping-tour-milan/'
   },
