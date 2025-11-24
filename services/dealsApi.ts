@@ -12,40 +12,40 @@ const mockDeals: Deal[] = [
         id: 'deal-gstaad',
         title: 'Gstaad Palace', 
         subtitle: '-25% Suite',
-        image: 'https://images.unsplash.com/photo-1596378443900-a37a65977a43?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/une-vue-dune-montagne-enneigee-avec-des-arbres-dessus-a89K4YbINP8',
         page: 'hotels'
     },
     { 
         id: 'deal-geneva',
         title: 'Services à Genève', 
         subtitle: 'Chef, Coach & plus',
-        image: 'https://images.unsplash.com/photo-1592185200388-14d48a80d5d5?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/une-grande-fontaine-crachant-de-leau-dans-lair-PZMNQ7ZlkAw',
         page: 'geneva'
     },
     { 
         id: 'deal-chamonix',
         title: 'Chamonix', 
         subtitle: 'Excursions Mont-Blanc',
-        image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/train-rouge-et-blanc-sur-une-montagne-enneigee-pendant-la-journee-Q0CARQx1WQk',
         page: 'chamonix'
     },
     { 
         id: 'deal-zermatt',
         title: 'Zermatt', 
         subtitle: 'Vue sur le Cervin',
-        image: 'https://images.unsplash.com/photo-1581331492948-2621d15a9999?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/une-montagne-enneigee-est-a-larriere-plan-dune-ville-vSS6nhP52_g?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink',
     },
     { 
         id: 'deal-interlaken',
         title: 'Interlaken', 
         subtitle: 'Aventures alpines',
-        image: 'https://images.unsplash.com/photo-1535889767794-9a8a72c1598b?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/maisons-pres-de-plan-deau-et-chaine-de-montagnes-_vt2_V8k2O4',
     },
      { 
         id: 'deal-montreux',
         title: 'Montreux', 
         subtitle: 'Riviera suisse',
-        image: 'https://images.unsplash.com/photo-1518538183215-186e2b170c51?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/vue-aerienne-des-batiments-de-la-ville-pres-dun-plan-deau-pendant-la-journee-ixPeR1YfgOA',
     }
 ];
 
