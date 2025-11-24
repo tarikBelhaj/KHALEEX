@@ -19,7 +19,7 @@ const mockDeals: Deal[] = [
         id: 'deal-geneva',
         title: 'Services à Genève', 
         subtitle: 'Chef, Coach & plus',
-        image: 'https://unsplash.com/fr/photos/une-grande-fontaine-crachant-de-leau-dans-lair-PZMNQ7ZlkAw',
+        image: 'https://images.unsplash.com/photo-1574904935745-7e40279f589d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         page: 'geneva'
     },
     { 
