@@ -69,7 +69,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 7,
         price: { amount: 600, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1631027124192-3343a4e9b6d6?q=80&w=800&auto=format=fit=crop' },
+        images: { large: 'https://unsplash.com/fr/photos/le-logo-mercedes-benz-sur-fond-noir-HotQ6dHmAVA' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/mercedes-classe-v/'
     },
     {
