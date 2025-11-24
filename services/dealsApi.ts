@@ -26,26 +26,26 @@ const mockDeals: Deal[] = [
         id: 'deal-chamonix',
         title: 'Chamonix', 
         subtitle: 'Excursions Mont-Blanc',
-        image: 'https://unsplash.com/fr/photos/train-rouge-et-blanc-sur-une-montagne-enneigee-pendant-la-journee-Q0CARQx1WQk',
+        image: 'https://images.unsplash.com/photo-1585821244330-7029d402beb2?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         page: 'chamonix'
     },
     { 
         id: 'deal-zermatt',
         title: 'Zermatt', 
         subtitle: 'Vue sur le Cervin',
-        image: 'https://unsplash.com/fr/photos/une-montagne-enneigee-est-a-larriere-plan-dune-ville-vSS6nhP52_g?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink',
+        image: 'https://images.unsplash.com/photo-1708598660454-4011df6397f0?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     { 
         id: 'deal-interlaken',
         title: 'Interlaken', 
         subtitle: 'Aventures alpines',
-        image: 'https://unsplash.com/fr/photos/maisons-pres-de-plan-deau-et-chaine-de-montagnes-_vt2_V8k2O4',
+        image: 'https://images.unsplash.com/photo-1612215864092-355d4b25083f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
      { 
         id: 'deal-montreux',
         title: 'Montreux', 
         subtitle: 'Riviera suisse',
-        image: 'https://unsplash.com/fr/photos/vue-aerienne-des-batiments-de-la-ville-pres-dun-plan-deau-pendant-la-journee-ixPeR1YfgOA',
+        image: 'https://images.unsplash.com/photo-1581541709890-f566353a3807?q=80&w=1275&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }
 ];
 
