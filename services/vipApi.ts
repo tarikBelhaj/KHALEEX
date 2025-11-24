@@ -50,7 +50,7 @@ const vipServices: VipService[] = [
         title: 'Chef Étoilé à Domicile',
         category: 'Gastronomie',
         description: 'Menu gastronomique préparé et servi dans votre résidence.',
-        image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=800&auto=format&fit=crop',
+        image: 'https://unsplash.com/fr/photos/personne-tenant-une-cuillere-avec-du-riz-LRrhF0Wf0vA?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink',
         publicPrice: 350,
         vipPrice: 245,
         discountPercentage: 30,
