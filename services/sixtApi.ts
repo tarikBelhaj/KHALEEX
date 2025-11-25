@@ -69,7 +69,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 7,
         price: { amount: 600, currency: 'CHF' },
-        images: { large: 'https://unsplash.com/fr/photos/le-logo-mercedes-benz-sur-fond-noir-HotQ6dHmAVA' },
+        images: { large: 'https://www.mercedes-benz.fr/content/dam/hq/passengercars/cars/v-class-fl-23/overview/mercedes-benz-v-class-exclusive-SSPIP152001.jpg/1740018887330.jpg?im=Crop,rect=(0,0,764,573);Resize=(512,384)' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/mercedes-classe-v/'
     },
     {
@@ -81,7 +81,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 950, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1617892320643-951515c1b523?q=80&w=800&auto=format=fit=crop' },
+        images: { large: 'blob:https://aistudio.google.com/29631655-7a09-441e-bc81-21db02e52c68' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/bentley-bentayga/'
     },
      { 
