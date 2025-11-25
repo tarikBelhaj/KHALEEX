@@ -44,7 +44,7 @@ const InnerApp: React.FC = () => {
     {
       title: t('hotelsTitle'),
       subtitle: t('hotelsSubtitle'),
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
+      image: 'https://cache.marriott.com/is/image/marriotts7prod/gvalc-poolgarden-terrace-6921:Feature-Hor?wid=1920&fit=constrain',
       badge1: t('hotelsBadge'),
       page: 'hotels'
     },
