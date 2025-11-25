@@ -51,14 +51,14 @@ const InnerApp: React.FC = () => {
     {
       title: t('carsTitle'),
       subtitle: t('carsSubtitle'),
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('carsBadge'),
       page: 'cars'
     },
     {
       title: t('experiencesTitle'),
       subtitle: t('experiencesSubtitle'),
-      image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1601893267113-a432b85910e0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('experiencesBadge'),
       page: 'experiences'
     }
