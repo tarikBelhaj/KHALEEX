@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { User } from '../App';
+import { User } from '../types';
 import { useTranslation } from '../contexts/LanguageContext';
 
 interface HeroProps {

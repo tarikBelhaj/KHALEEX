@@ -1,12 +1,14 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { ArrowLeftIcon, SearchIcon, FilterIcon, SpinnerIcon, InfoIcon } from '../Icons';
+import { ArrowLeftIcon, SearchIcon, FilterIcon, SpinnerIcon, InfoIcon, KlookLogoIcon, ArrowRightOnRectangleIcon, GlobeIcon } from '../Icons';
 import { HotelCard, Hotel } from '../HotelCard';
 import { HotelBookingModal } from '../BookingConfirmationModal';
 import { CurrencySwitcher } from '../CurrencySwitcher';
 import usePersistentState from '../../hooks/usePersistentState';
 import { FilterModal, Filters } from '../FilterModal';
 import { fetchHotels } from '../../services/bookingApi';
+import { useTranslation } from '../../contexts/LanguageContext';
+import { ExpediaHotelsWidget } from '../ExpediaHotelsWidget';
 
 
 interface PageProps {
@@ -16,10 +18,13 @@ interface PageProps {
 }
 
 export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChange }) => {
+  const { t } = useTranslation();
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
-  const [allHotels, setAllHotels] = usePersistentState<Hotel[]>('hotelsData', []);
+  
+  // CHANGED KEY TO REFRESH DATA STRUCTURE FOR XOTELO INTEGRATION
+  const [allHotels, setAllHotels] = usePersistentState<Hotel[]>('hotels_xotelo_v1', []);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +55,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
       try {
         setIsLoading(true);
         setError(null);
-        const fetchedHotels = await fetchHotels();
+        const fetchedHotels = await fetchHotels(); // Defaults to Geneva
         setAllHotels(fetchedHotels);
       } catch (err: any) {
         setError(err.message || 'Impossible de charger les hôtels. Veuillez réessayer plus tard.');
@@ -60,7 +65,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
       }
     };
     
-    // Only fetch if data isn't already persisted
+    // Force fetch if empty or if we want fresh data
     if (allHotels.length === 0) {
         loadHotels();
     } else {
@@ -98,7 +103,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
         return searchTerms.every(term => hotelInfo.includes(term));
       })
       .filter(hotel => hotel.price <= activeFilters.maxPrice)
-      .filter(hotel => activeFilters.ratings.length === 0 || activeFilters.ratings.includes(hotel.rating))
+      .filter(hotel => activeFilters.ratings.length === 0 || activeFilters.ratings.includes(Math.floor(hotel.rating))) // Round rating for filter
       .filter(hotel => activeFilters.amenities.length === 0 || activeFilters.amenities.every(amenity => hotel.amenities.includes(amenity)));
   }, [searchQuery, allHotels, activeFilters]);
 
@@ -107,7 +112,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
       return (
         <div className="col-span-full flex flex-col items-center justify-center text-center h-64">
           <SpinnerIcon className="w-12 h-12 text-blue-900 dark:text-amber-400 animate-spin" />
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Chargement des hôtels en cours...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Recherche des meilleurs tarifs en temps réel...</p>
         </div>
       );
     }
@@ -126,7 +131,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
           {filteredHotels.length > 0 ? filteredHotels.map((hotel, hotelIndex) => (
             <HotelCard 
-                key={hotel.name} 
+                key={`${hotel.name}-${hotelIndex}`} 
                 hotel={hotel} 
                 onBook={handleBookClick} 
                 currency={currency}
@@ -150,7 +155,7 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
             <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
               <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             </button>
-            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Hôtels d'exception</h1>
+            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{t('hotelsTitle')}</h1>
         </div>
         <div className="flex items-center gap-2">
             <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Admin</span>
@@ -161,12 +166,38 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
         </div>
       </header>
       <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-8">
+        
+        {/* Expedia Widget */}
+        <ExpediaHotelsWidget />
+
+        {/* KLOOK AFFILIATE BANNER */}
+        <div 
+            onClick={() => window.open('https://klook.tpo.lu/NzsAwqrC', '_blank')}
+            className="w-full bg-gradient-to-r from-[#FF5B00] to-[#FF9000] rounded-3xl overflow-hidden shadow-xl relative cursor-pointer transform hover:scale-[1.01] transition-transform duration-300 group h-40 md:h-48 flex items-center"
+        >
+            <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20">
+                <KlookLogoIcon className="w-full h-full text-white transform rotate-12 scale-150 translate-x-10" />
+            </div>
+            <div className="p-6 md:p-10 relative z-10 text-white flex-grow">
+                <div className="bg-white/20 backdrop-blur-sm w-fit px-3 py-1 rounded-full mb-3">
+                    <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                        <KlookLogoIcon className="w-4 h-4" /> Official Partner
+                    </span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-1">{t('klookBannerTitle')}</h2>
+                <p className="text-white/90 text-sm md:text-base mb-4 max-w-xl">{t('klookBannerSubtitle')}</p>
+            </div>
+            <div className="hidden md:flex mr-10 bg-white text-[#FF5B00] font-bold py-3 px-6 rounded-xl items-center gap-2 shadow-lg group-hover:shadow-xl transition-all">
+                {t('klookButton')} <ArrowRightOnRectangleIcon className="w-5 h-5" />
+            </div>
+        </div>
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
             <div className="relative w-full md:max-w-lg">
                 <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input 
                     type="text"
-                    placeholder="Rechercher (hôtel, ville, service...)"
+                    placeholder={t('searchPlaceholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-sm"
@@ -187,6 +218,20 @@ export const HotelsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyCh
         </div>
         
         {renderContent()}
+
+        {/* GLOBAL INVENTORY BUTTON */}
+        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col items-center text-center">
+            <p className="text-gray-500 dark:text-gray-400 mb-4 font-medium">{t('cantFindHotel')}</p>
+            <button 
+                onClick={() => window.open('https://klook.tpo.lu/NzsAwqrC', '_blank')}
+                className="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-4 px-8 rounded-2xl flex items-center gap-3 transition-all transform hover:-translate-y-1 border border-gray-200 dark:border-gray-600"
+            >
+                <GlobeIcon className="w-5 h-5" />
+                {t('searchOnKlook')}
+                <ArrowRightOnRectangleIcon className="w-4 h-4 opacity-60" />
+            </button>
+        </div>
+
       </main>
       
       {selectedHotel && <HotelBookingModal hotel={selectedHotel} onClose={handleCloseModal} />}

@@ -11,7 +11,7 @@ import {
     AccountIcon,
     UserGroupIcon
 } from '../Icons';
-import { User } from '../../App';
+import { User } from '../../types';
 
 interface PageProps {
   onBack: () => void;

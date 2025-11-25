@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRightIcon, InfoIcon } from './Icons';
+import { ChevronRightIcon, InfoIcon, ArrowRightOnRectangleIcon } from './Icons';
 import { fetchTodaysDeals, Deal } from '../services/dealsApi';
 import { useTranslation } from '../contexts/LanguageContext';
 
@@ -9,7 +9,7 @@ interface TodaysDealProps {
 }
 
 const DealCardSkeleton: React.FC = () => (
-    <div aria-hidden="true" className="relative w-64 md:w-full h-72 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+    <div aria-hidden="true" className="relative w-72 md:w-full h-80 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
 );
 
 export const TodaysDeal: React.FC<TodaysDealProps> = ({ onNavigate }) => {
@@ -63,13 +63,36 @@ export const TodaysDeal: React.FC<TodaysDealProps> = ({ onNavigate }) => {
                 onClick={() => deal.page && onNavigate(deal.page)}
                 disabled={!deal.page}
                 aria-label={`View deals for ${deal.title}`}
-                className="relative w-64 md:w-full h-72 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white text-left focus:outline-none focus:ring-4 focus:ring-amber-400 focus:ring-opacity-50 transition-transform duration-200 hover:scale-105 disabled:cursor-not-allowed disabled:hover:scale-100 group"
+                className="relative w-72 md:w-full h-auto flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700/80 bg-white dark:bg-gray-800 text-left focus:outline-none focus:ring-4 focus:ring-amber-400 focus:ring-opacity-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:cursor-not-allowed disabled:hover:translate-y-0 group flex flex-col"
             >
-                <img src={deal.image} alt={deal.title} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="relative z-10 p-5 flex flex-col h-full justify-end">
-                    <h3 className="font-bold leading-tight text-xl mb-1">{deal.title}</h3>
-                    <p className="text-sm opacity-90">{deal.subtitle}</p>
+                {/* Image Section */}
+                <div className="relative h-48 w-full overflow-hidden">
+                    <img 
+                        src={deal.image} 
+                        alt={deal.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" 
+                    />
+                    {/* Badge Overlay */}
+                    <div className="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-2 py-1 rounded-full shadow-md uppercase tracking-wider">
+                        Exclusive
+                    </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-5 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1 line-clamp-1">{deal.title}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{deal.subtitle}</p>
+                    </div>
+                    
+                    <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
+                         <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wide group-hover:text-amber-500 transition-colors">
+                            {deal.page ? t('seeAll') : 'Bientôt disponible'}
+                         </span>
+                         <div className="bg-gray-100 dark:bg-gray-700 p-2 rounded-full group-hover:bg-amber-100 dark:group-hover:bg-amber-900/30 transition-colors">
+                            <ArrowRightOnRectangleIcon className="w-4 h-4 text-gray-600 dark:text-gray-300 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
+                         </div>
+                    </div>
                 </div>
             </button>
         ));

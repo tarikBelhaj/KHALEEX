@@ -33,7 +33,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 4,
         price: { amount: 450, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1680451553374-09d8d6a1ca58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+        images: { large: 'https://images.unsplash.com/photo-1616789916145-2b6555138259?q=80&w=800&auto=format&fit=crop' },
         bookingUrl: 'https://www.sixt.ch/mercedes-benz-s-class-limousine/'
     },
     {
@@ -45,7 +45,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 520, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1632081831947-24ffdea2cd04?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+        images: { large: 'https://images.unsplash.com/photo-1612884831623-6a970e4b8f1c?q=80&w=800&auto=format&fit=crop' },
         bookingUrl: 'https://www.sixt.ch/suv/audi/q5/'
     },
     {
@@ -57,7 +57,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 480, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1652890058094-a3fe8ead30fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+        images: { large: 'https://images.unsplash.com/photo-1621287924822-b5193d543e37?q=80&w=800&auto=format&fit=crop' },
         bookingUrl: 'https://www.sixt.ch/berline/bmw/serie-5/'
     },
     {
@@ -69,7 +69,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 7,
         price: { amount: 600, currency: 'CHF' },
-        images: { large: 'https://www.mercedes-benz.fr/content/dam/hq/passengercars/cars/v-class-fl-23/overview/mercedes-benz-v-class-exclusive-SSPIP152001.jpg/1740018887330.jpg?im=Crop,rect=(0,0,764,573);Resize=(512,384)' },
+        images: { large: 'https://images.unsplash.com/photo-1631027124192-3343a4e9b6d6?q=80&w=800&auto=format&fit=crop' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/mercedes-classe-v/'
     },
     {
@@ -81,7 +81,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 950, currency: 'CHF' },
-        images: { large: 'https://www.bentleymotors.com/content/dam/bm/websites/bmcom/bentleymotors-com/models/24my/bentayga-swb/bentayga-swb-range-page/SWB%20Range%20Accessories.jpg/_jcr_content/renditions/original.image_file.432.576.file/SWB%20Range%20Accessories.jpg' },
+        images: { large: 'https://images.unsplash.com/photo-1617892320643-951515c1b523?q=80&w=800&auto=format&fit=crop' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/bentley-bentayga/'
     },
      { 
@@ -93,7 +93,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 2,
         price: { amount: 750, currency: 'CHF' },
-        images: { large: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUPLUyJRFzag7zeGm1u4UQ6N9yKRe2Y10AbA&s'}, 
+        images: { large: 'https://images.unsplash.com/photo-1604280918973-72e9d28256e2?q=80&w=800&auto=format&fit=crop'}, 
         bookingUrl: 'https://www.edelswiss-limousine.ch/location-porsche-geneve' 
     },
 ];

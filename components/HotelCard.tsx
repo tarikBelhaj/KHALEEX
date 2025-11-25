@@ -1,5 +1,12 @@
+
 import React, { useState, useRef, useMemo, useEffect } from 'react';
-import { StarIcon, ChevronDownIcon, WifiIcon, SparklesIcon, SunIcon, MapPinIcon, CameraIcon, PhotoIcon, ChevronLeftIcon, ChevronRightIcon } from './Icons';
+import { StarIcon, ChevronDownIcon, WifiIcon, SparklesIcon, SunIcon, MapPinIcon, CameraIcon, PhotoIcon, ChevronLeftIcon, ChevronRightIcon, KlookLogoIcon, ArrowRightOnRectangleIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
+
+export interface HotelRate {
+  provider: string;
+  price: number;
+}
 
 export interface Hotel {
   name: string;
@@ -10,6 +17,7 @@ export interface Hotel {
   bookingUrl: string;
   description: string;
   amenities: string[];
+  rates?: HotelRate[];
 }
 
 interface HotelCardProps {
@@ -44,10 +52,12 @@ const currencySymbols = {
 };
 
 export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, isAdmin, onImageUpload }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { name, city, rating, price, description, amenities } = hotel;
+  const { name, city, rating, price, description, amenities, rates } = hotel;
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [imageError, setImageError] = useState(false);
 
   // Filter out null/undefined images and memoize the result for performance.
   const validImages = useMemo(() => {
@@ -57,12 +67,13 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
   // Reset index if the hotel changes to prevent stale state
   useEffect(() => {
     setCurrentImageIndex(0);
+    setImageError(false);
   }, [name]);
 
-  const getConvertedPrice = () => {
+  const getConvertedPrice = (amount: number) => {
     const rate = conversionRates[currency as keyof typeof conversionRates] || 1;
     const symbol = currencySymbols[currency as keyof typeof currencySymbols] || 'CHF';
-    const convertedPrice = (price * rate).toFixed(0);
+    const convertedPrice = (amount * rate).toFixed(0);
     return `${symbol} ${convertedPrice}`;
   };
 
@@ -82,6 +93,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
     e.preventDefault();
     if (validImages.length > 1) {
         setCurrentImageIndex((prev) => (prev + 1) % validImages.length);
+        setImageError(false);
     }
   };
 
@@ -90,20 +102,32 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
       e.preventDefault();
       if (validImages.length > 1) {
           setCurrentImageIndex((prev) => (prev - 1 + validImages.length) % validImages.length);
+          setImageError(false);
       }
   };
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-200/80 dark:border-gray-700/80 transition-all duration-300 group">
-      <div className="h-48 md:h-64 relative overflow-hidden">
-        {validImages.length > 0 ? (
-            <img src={validImages[currentImageIndex]} alt={name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out" />
+      <div className="h-48 md:h-64 relative overflow-hidden bg-gray-200 dark:bg-gray-700">
+        {validImages.length > 0 && !imageError ? (
+            <img 
+                src={validImages[currentImageIndex]} 
+                alt={name} 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out" 
+                onError={() => setImageError(true)}
+            />
         ) : (
-            <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex flex-col items-center justify-center">
+            <div className="w-full h-full flex flex-col items-center justify-center">
                 <PhotoIcon className="w-12 h-12 text-gray-400 dark:text-gray-500" />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Aucune image</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Image non disponible</p>
             </div>
         )}
+
+        {/* Klook Instant Confirmation Badge - Only show if not dynamic Xotelo data (optional logic) */}
+        <div className="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-md flex items-center gap-1 z-10">
+            <ArrowRightOnRectangleIcon className="w-3 h-3" />
+            {t('instantConfirmation')}
+        </div>
 
         {validImages.length > 1 && (
             <>
@@ -149,26 +173,49 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
       <div className="p-4">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100">{name}</h3>
+            <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100 line-clamp-1">{name}</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">{city}</p>
           </div>
-          <div className="flex items-center gap-1 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 px-2 py-1 rounded-full text-sm font-bold">
+          <div className="flex items-center gap-1 bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 px-2 py-1 rounded-full text-sm font-bold shrink-0">
             <StarIcon className="w-4 h-4 text-amber-500" />
             <span>{rating.toFixed(1)}</span>
           </div>
         </div>
         
-        <div className="flex justify-between items-center mt-4">
-          <div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">dès</p>
-            <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">{getConvertedPrice()} <span className="font-normal text-sm">/nuit</span></p>
+        {/* Price Comparison Section */}
+        {rates && rates.length > 0 ? (
+           <div className="mt-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-3 border border-gray-100 dark:border-gray-700">
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">Comparateur</p>
+              <div className="space-y-2">
+                {rates.map((rate, idx) => (
+                  <div key={idx} className="flex justify-between items-center text-sm">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">{rate.provider}</span>
+                    <span className="font-bold text-gray-900 dark:text-white">{getConvertedPrice(rate.price)}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
+                 <span className="text-xs text-green-600 dark:text-green-400 font-bold">Meilleure offre</span>
+                 <span className="font-extrabold text-xl text-green-600 dark:text-green-400">{getConvertedPrice(price)}</span>
+              </div>
+           </div>
+        ) : (
+           <div className="flex justify-between items-center mt-4">
+            <div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">dès</p>
+              <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">{getConvertedPrice(price)} <span className="font-normal text-sm">/nuit</span></p>
+            </div>
           </div>
-          <button 
-            onClick={() => onBook(hotel)}
-            className="bg-blue-900 text-white font-bold py-2.5 px-6 rounded-lg shadow-md transition-transform duration-200 hover:scale-105"
-          >
-            Réserver
-          </button>
+        )}
+
+        <div className="mt-4">
+            <button 
+                onClick={() => onBook(hotel)}
+                className="w-full bg-[#FF5B00] text-white font-bold py-2.5 px-4 rounded-lg shadow-md transition-transform duration-200 hover:scale-[1.02] flex items-center justify-center gap-2"
+            >
+                <KlookLogoIcon className="w-4 h-4 text-white" />
+                <span className="text-sm">{t('bookOnKlook')}</span>
+            </button>
         </div>
 
         {isExpanded && (

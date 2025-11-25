@@ -9,9 +9,10 @@ import { Testimonials } from './components/Testimonials';
 import { FloatingActionButton } from './components/FloatingActionButton';
 import { BottomNav } from './components/BottomNav';
 import { CategoryCard, Category } from './components/CategoryCard';
-import { HotelsPage } from './components/pages/HotelsPage';
+import { GenevaHotelsPage } from './components/pages/GenevaHotelsPage';
 import { CarsPage } from './components/pages/CarsPage';
 import { ExperiencesPage } from './components/pages/ExperiencesPage';
+import { TransferPage } from './components/pages/TransferPage';
 import { AccountPage } from './components/pages/AccountPage';
 import { GenevaPage } from './components/pages/GenevaPage';
 import { ChamonixPage } from './components/pages/ChamonixPage';
@@ -22,12 +23,8 @@ import { LanguageProvider, useTranslation } from './contexts/LanguageContext';
 import { BestRentalDeals } from './components/BestRentalDeals';
 import { GeneralExperiences } from './components/GeneralExperiences';
 import { Footer } from './components/Footer';
-
-export interface User {
-  name: string;
-  email: string;
-  avatar: string;
-}
+import { EsimBookingWidget } from './components/EsimBookingWidget';
+import { User } from './types';
 
 // Extracted InnerApp to use hooks from LanguageProvider
 const InnerApp: React.FC = () => {
@@ -44,21 +41,28 @@ const InnerApp: React.FC = () => {
     {
       title: t('hotelsTitle'),
       subtitle: t('hotelsSubtitle'),
-      image: 'https://cache.marriott.com/is/image/marriotts7prod/gvalc-poolgarden-terrace-6921:Feature-Hor?wid=1920&fit=constrain',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
       badge1: t('hotelsBadge'),
       page: 'hotels'
     },
     {
       title: t('carsTitle'),
       subtitle: t('carsSubtitle'),
-      image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop',
       badge1: t('carsBadge'),
       page: 'cars'
     },
     {
+      title: t('transfersTitle'),
+      subtitle: t('transfersSubtitle'),
+      image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800&auto=format&fit=crop',
+      badge1: t('transfersBadge'),
+      page: 'transfers'
+    },
+    {
       title: t('experiencesTitle'),
       subtitle: t('experiencesSubtitle'),
-      image: 'https://images.unsplash.com/photo-1601893267113-a432b85910e0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=800&auto=format&fit=crop',
       badge1: t('experiencesBadge'),
       page: 'experiences'
     }
@@ -100,9 +104,12 @@ const InnerApp: React.FC = () => {
   const renderContent = () => {
     switch(currentPage) {
       case 'hotels':
-        return <HotelsPage onBack={() => navigateTo('home')} currency={currency} onCurrencyChange={setCurrency} />;
+        // Use the new Geneva Hotels Page for the hotels route
+        return <GenevaHotelsPage onBack={() => navigateTo('home')} currency={currency} />;
       case 'cars':
         return <CarsPage onBack={() => navigateTo('home')} currency={currency} onCurrencyChange={setCurrency} />;
+      case 'transfers':
+        return <TransferPage onBack={() => navigateTo('home')} />;
       case 'experiences':
         return <ExperiencesPage onBack={() => navigateTo('home')} />;
       case 'vip-only':
@@ -134,7 +141,7 @@ const InnerApp: React.FC = () => {
               
               {/* Categories Section */}
               <div className="px-5 md:px-10 -mt-16 relative z-10 max-w-7xl mx-auto w-full">
-                  <div className="flex gap-3 md:gap-8 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 md:grid md:grid-cols-3 md:mx-0 md:px-0 md:overflow-visible snap-x snap-mandatory md:snap-none">
+                  <div className="flex gap-3 md:gap-6 overflow-x-auto no-scrollbar pb-4 -mx-5 px-5 md:grid md:grid-cols-4 md:mx-0 md:px-0 md:overflow-visible snap-x snap-mandatory md:snap-none">
                     {categories.map(cat => (
                         <div key={cat.title} className="w-36 sm:w-48 md:w-full flex-shrink-0 snap-center">
                             <CategoryCard category={cat} onClick={navigateTo} />
@@ -148,6 +155,9 @@ const InnerApp: React.FC = () => {
                 
                 {/* 1. Best Rental Deals */}
                 <BestRentalDeals onNavigate={navigateTo} />
+
+                {/* eSIM Booking Widget (NEW) */}
+                <EsimBookingWidget />
                 
                 {/* 2. Today's Deals */}
                 <TodaysDeal onNavigate={navigateTo} />
@@ -202,3 +212,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+    
