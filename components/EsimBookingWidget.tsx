@@ -30,7 +30,7 @@ export const EsimBookingWidget: React.FC = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-    const affiliateLink = "https://tpo.lu/8ApKAKls";
+    const affiliateLink = "https://yesim.tpo.lu/hkdLcVdT";
 
     const handleBuy = () => {
         if (selectedCountry && selectedPlan) {

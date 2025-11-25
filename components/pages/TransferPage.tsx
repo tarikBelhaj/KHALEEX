@@ -29,7 +29,7 @@ export const TransferPage: React.FC<PageProps> = ({ onBack }) => {
           type: "First Class",
           passengers: 3,
           luggage: 2,
-          image: "https://images.unsplash.com/photo-1616789916145-2b6555138259?q=80&w=800&auto=format&fit=crop"
+          image: "https://images.unsplash.com/photo-1680451553374-09d8d6a1ca58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
           name: "Mercedes-Benz V-Class",

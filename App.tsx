@@ -153,15 +153,15 @@ const InnerApp: React.FC = () => {
               {/* Main Content Sections with increased spacing */}
               <div className="px-5 md:px-10 mt-12 space-y-12 md:space-y-16 max-w-7xl mx-auto">
                 
-                {/* 1. Best Rental Deals */}
+                {/* 1. Today's Deals (Choose your location) */}
+                <TodaysDeal onNavigate={navigateTo} />
+
+                {/* 2. Best Rental Deals */}
                 <BestRentalDeals onNavigate={navigateTo} />
 
                 {/* eSIM Booking Widget (NEW) */}
                 <EsimBookingWidget />
                 
-                {/* 2. Today's Deals */}
-                <TodaysDeal onNavigate={navigateTo} />
-
                 {/* 3. General Experiences */}
                 <GeneralExperiences onNavigate={navigateTo} />
 
@@ -212,4 +212,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-    
