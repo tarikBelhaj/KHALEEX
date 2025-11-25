@@ -45,7 +45,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 520, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1612884831623-6a970e4b8f1c?q=80&w=800&auto=format=fit=crop' },
+        images: { large: 'https://images.unsplash.com/photo-1632081831947-24ffdea2cd04?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
         bookingUrl: 'https://www.sixt.ch/suv/audi/q5/'
     },
     {
@@ -57,7 +57,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 480, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1621287924822-b5193d543e37?q=80&w=800&auto=format=fit=crop' },
+        images: { large: 'https://images.unsplash.com/photo-1652890058094-a3fe8ead30fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
         bookingUrl: 'https://www.sixt.ch/berline/bmw/serie-5/'
     },
     {
