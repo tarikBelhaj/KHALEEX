@@ -81,7 +81,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 5,
         price: { amount: 950, currency: 'CHF' },
-        images: { large: 'blob:https://aistudio.google.com/29631655-7a09-441e-bc81-21db02e52c68' },
+        images: { large: 'https://www.bentleymotors.com/content/dam/bm/websites/bmcom/bentleymotors-com/models/24my/bentayga-swb/bentayga-swb-range-page/SWB%20Range%20Accessories.jpg/_jcr_content/renditions/original.image_file.432.576.file/SWB%20Range%20Accessories.jpg' },
         bookingUrl: 'https://www.gmc-limousines.ch/flotte/bentley-bentayga/'
     },
      { 
@@ -93,7 +93,7 @@ const mockApiResponse: CarFromApi[] = [
         transmission: 'Auto',
         seats: 2,
         price: { amount: 750, currency: 'CHF' },
-        images: { large: 'https://images.unsplash.com/photo-1604280918973-72e9d28256e2?q=80&w=800&auto=format=fit=crop'}, 
+        images: { large: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUPLUyJRFzag7zeGm1u4UQ6N9yKRe2Y10AbA&s'}, 
         bookingUrl: 'https://www.edelswiss-limousine.ch/location-porsche-geneve' 
     },
 ];
