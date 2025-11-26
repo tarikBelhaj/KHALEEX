@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTranslation } from '../contexts/LanguageContext';
 import { ArrowRightOnRectangleIcon, MapPinIcon, ShieldCheckIcon, StarIcon, UserGroupIcon } from './Icons';
@@ -8,9 +7,9 @@ export const TransferBanner: React.FC = () => {
   const affiliateLink = "https://tpo.lu/8ApKAKls";
 
   const features = [
-    { icon: <ShieldCheckIcon className="w-4 h-4 text-amber-400" />, text: "Chauffeurs Pro" },
-    { icon: <StarIcon className="w-4 h-4 text-amber-400" />, text: "Mercedes & BMW" },
-    { icon: <UserGroupIcon className="w-4 h-4 text-amber-400" />, text: "Meet & Greet" },
+    { icon: <ShieldCheckIcon className="w-4 h-4 text-amber-400" />, text: t('proChauffeurs') },
+    { icon: <StarIcon className="w-4 h-4 text-amber-400" />, text: t('mercedesAndBmw') },
+    { icon: <UserGroupIcon className="w-4 h-4 text-amber-400" />, text: t('meetAndGreet') },
   ];
 
   return (
@@ -37,7 +36,7 @@ export const TransferBanner: React.FC = () => {
          {/* Top Badge */}
          <div className="flex items-center gap-2 mb-4 animate-fade-in">
             <div className="bg-amber-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_0_15px_rgba(245,158,11,0.5)]">
-                Partenaire Exclusif
+                {t('exclusivePartner')}
             </div>
             <div className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => <StarIcon key={i} className="w-3 h-3 fill-current" />)}

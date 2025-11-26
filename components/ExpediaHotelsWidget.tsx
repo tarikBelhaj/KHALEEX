@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from '../contexts/LanguageContext';
 import { StarIcon } from './Icons';
@@ -64,7 +63,7 @@ export const ExpediaHotelsWidget: React.FC = () => {
                 <div>
                     <div className="flex items-center gap-2 mb-2">
                         <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/10">
-                            Expedia Partner
+                            {t('expediaPartner')}
                         </span>
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold text-white">
@@ -83,11 +82,11 @@ export const ExpediaHotelsWidget: React.FC = () => {
              <div className="flex flex-wrap gap-4 mt-6 justify-center md:justify-start">
                 <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-1.5 border border-white/5">
                     <StarIcon className="w-4 h-4 text-lime-400" />
-                    <span className="text-xs text-white font-medium">Best Rates Guaranteed</span>
+                    <span className="text-xs text-white font-medium">{t('bestRatesGuaranteed')}</span>
                 </div>
                 <div className="flex items-center gap-2 bg-black/20 rounded-full px-4 py-1.5 border border-white/5">
                     <StarIcon className="w-4 h-4 text-lime-400" />
-                    <span className="text-xs text-white font-medium">Free Cancellation</span>
+                    <span className="text-xs text-white font-medium">{t('freeCancellation')}</span>
                 </div>
             </div>
         </div>

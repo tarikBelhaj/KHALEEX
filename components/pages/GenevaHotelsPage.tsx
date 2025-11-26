@@ -16,6 +16,7 @@ import {
   XoteloHotel, 
   XoteloRate 
 } from '../../services/bookingApi';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface PageProps {
   onBack: () => void;
@@ -23,6 +24,7 @@ interface PageProps {
 }
 
 export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
+  const { t } = useTranslation();
   // -- State --
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null); // location_key
   const [hotels, setHotels] = useState<XoteloHotel[]>([]);
@@ -63,12 +65,12 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
     try {
       const list = await fetchHotelList(key);
       if (!list || list.length === 0) {
-        setError("Aucun hôtel disponible pour cette destination.");
+        setError(t('noHotelsAvailable'));
       } else {
         setHotels(list);
       }
     } catch (err) {
-      setError("Service temporairement indisponible.");
+      setError(t('serviceUnavailable'));
     } finally {
       setLoadingHotels(false);
     }
@@ -155,7 +157,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
       return (
         <div className="flex flex-col items-center justify-center py-20 text-white">
           <SpinnerIcon className="w-12 h-12 animate-spin mb-4 text-amber-400" />
-          <p>Recherche des meilleurs hôtels...</p>
+          <p>{t('loadingHotels')}</p>
         </div>
       );
     }
@@ -168,7 +170,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
             onClick={() => setSelectedDestination(null)}
             className="mt-4 text-amber-400 hover:underline"
           >
-            Choisir une autre destination
+            {t('chooseAnotherDestination')}
           </button>
         </div>
       );
@@ -185,11 +187,11 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
               {hotel.image ? (
                 <img src={hotel.image} alt={hotel.name} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">Pas d'image</div>
+                <div className="w-full h-full flex items-center justify-center text-gray-400">{t('noImageAvailable')}</div>
               )}
               {hotel.price_ranges && (
                 <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-bold">
-                  dès {hotel.price_ranges.minimum} {hotel.price_ranges.currency}
+                  {t('from')} {hotel.price_ranges.minimum} {hotel.price_ranges.currency}
                 </div>
               )}
             </div>
@@ -205,7 +207,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
                 )}
               </div>
 
-              <p className="text-xs text-gray-500 mb-3">{hotel.accommodation_type} • {hotel.review_summary?.count} avis</p>
+              <p className="text-xs text-gray-500 mb-3">{hotel.accommodation_type} • {hotel.review_summary?.count} {t('reviews')}</p>
 
               {hotel.mentions && (
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -222,7 +224,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
                   onClick={() => setSelectedHotel(hotel)}
                   className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-3 rounded-xl shadow-md hover:from-blue-700 hover:to-blue-900 transition-all"
                 >
-                  Voir les prix
+                  {t('viewPrices')}
                 </button>
               </div>
             </div>
@@ -259,7 +261,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
           {/* Date Selector */}
           <div className="p-4 border-b border-gray-100 grid grid-cols-2 gap-4 bg-white">
             <div>
-              <label className="text-xs font-bold text-gray-500 uppercase">Arrivée</label>
+              <label className="text-xs font-bold text-gray-500 uppercase">{t('checkIn')}</label>
               <div className="relative mt-1">
                 <CalendarIcon className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
                 <input 
@@ -271,7 +273,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
               </div>
             </div>
             <div>
-              <label className="text-xs font-bold text-gray-500 uppercase">Départ</label>
+              <label className="text-xs font-bold text-gray-500 uppercase">{t('checkOut')}</label>
               <div className="relative mt-1">
                 <CalendarIcon className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
                 <input 
@@ -290,7 +292,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
             {loadingRates ? (
               <div className="flex flex-col items-center justify-center h-40 text-gray-500">
                 <SpinnerIcon className="w-8 h-8 animate-spin mb-3 text-blue-600" />
-                <p>Recherche des meilleurs tarifs...</p>
+                <p>{t('loadingRates')}</p>
               </div>
             ) : rates.length > 0 ? (
               <div className="space-y-3">
@@ -316,7 +318,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
                              <p className={`font-bold text-base ${getOtaColor(rate.name)}`}>{rate.name}</p>
                              {isBestPrice && (
                                 <span className="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wide">
-                                    Meilleure offre
+                                    {t('bestOffer')}
                                 </span>
                              )}
                           </div>
@@ -331,7 +333,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
                           onClick={() => window.open(rate.url, '_blank')}
                           className={`mt-1 text-xs font-bold hover:underline ${isBestPrice ? 'text-green-700' : 'text-blue-600'}`}
                         >
-                          Réserver
+                          {t('book')}
                         </button>
                       </div>
                     </div>
@@ -340,7 +342,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
               </div>
             ) : (
               <div className="text-center py-10 text-gray-500">
-                <p>Prix non disponibles pour ces dates.</p>
+                <p>{t('ratesUnavailable')}</p>
               </div>
             )}
           </div>
@@ -353,10 +355,12 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
                className="w-full bg-[#FFC72C] hover:bg-[#E6B328] text-black font-bold py-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-transform active:scale-95"
             >
                <ArrowRightOnRectangleIcon className="w-5 h-5" />
-               Réserver sur Expedia / Hotels.com
+               {t('bookOnExpedia')}
             </button>
              <p className="text-[10px] text-gray-400 text-center mt-2">
-                En réservant via ce lien, vous serez redirigé vers nos partenaires avec les dates du <strong>{checkInDate}</strong> au <strong>{checkOutDate}</strong>.
+                {t('bookingRedirectDisclaimer')
+                    .replace('{checkInDate}', checkInDate)
+                    .replace('{checkOutDate}', checkOutDate)}
              </p>
           </div>
 
@@ -371,12 +375,12 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
         <button onClick={onBack} className="p-2 rounded-full hover:bg-white/10 transition-colors">
           <ArrowLeftIcon className="w-6 h-6 text-white" />
         </button>
-        <h1 className="text-xl md:text-2xl font-bold text-white">Hôtels de Luxe & Ski</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-white">{t('luxuryHotelsAndSki')}</h1>
       </header>
 
       <main className="p-4 md:p-10 max-w-7xl mx-auto">
         <p className="text-indigo-200 mb-6 max-w-2xl">
-          Sélectionnez votre destination pour découvrir nos hôtels partenaires exclusifs. Comparaison en temps réel.
+          {t('luxuryHotelsAndSkiSubtitle')}
         </p>
 
         {renderDestinations()}
@@ -386,7 +390,7 @@ export const GenevaHotelsPage: React.FC<PageProps> = ({ onBack }) => {
         {!selectedDestination && (
           <div className="flex flex-col items-center justify-center py-20 text-indigo-300/50 border-2 border-dashed border-indigo-300/20 rounded-3xl">
             <MapPinIcon className="w-16 h-16 mb-4 opacity-50" />
-            <p className="text-lg">Veuillez sélectionner une destination ci-dessus</p>
+            <p className="text-lg">{t('pleaseSelectDestination')}</p>
           </div>
         )}
       </main>

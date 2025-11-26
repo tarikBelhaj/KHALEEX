@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronRightIcon, ArrowLeftIcon } from './Icons';
 import { useTranslation } from '../contexts/LanguageContext';
@@ -45,7 +44,7 @@ export const GeneralExperiences: React.FC<GeneralExperiencesProps> = ({ onNaviga
                     onClick={() => onNavigate('experiences')}
                     className="text-sm font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1 hover:text-amber-500 transition-colors"
                 >
-                    {t('seeAll')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
+                    {t('discover')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
                 </button>
             </div>
             
@@ -70,7 +69,7 @@ export const GeneralExperiences: React.FC<GeneralExperiencesProps> = ({ onNaviga
                                 <h3 className="font-bold text-xl leading-tight mb-2">{exp.title}</h3>
                                 <p className="text-xs text-gray-200 opacity-90 line-clamp-2 mb-4">{exp.description}</p>
                                 <div className="mt-auto pt-4 border-t border-white/20 flex justify-between items-center">
-                                    <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Découvrir</span>
+                                    <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">{t('discover')}</span>
                                     <div className="bg-white/20 p-2 rounded-full">
                                         <ArrowLeftIcon className="w-3 h-3 rotate-180" />
                                     </div>

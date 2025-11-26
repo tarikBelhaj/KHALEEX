@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronRightIcon, InfoIcon, ArrowRightOnRectangleIcon } from './Icons';
 import { fetchTodaysDeals, Deal } from '../services/dealsApi';
@@ -74,7 +73,7 @@ export const TodaysDeal: React.FC<TodaysDealProps> = ({ onNavigate }) => {
                     />
                     {/* Badge Overlay */}
                     <div className="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-2 py-1 rounded-full shadow-md uppercase tracking-wider">
-                        Exclusive
+                        {t('exclusive')}
                     </div>
                 </div>
 
@@ -87,7 +86,7 @@ export const TodaysDeal: React.FC<TodaysDealProps> = ({ onNavigate }) => {
                     
                     <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
                          <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wide group-hover:text-amber-500 transition-colors">
-                            {deal.page ? t('seeAll') : 'Bientôt disponible'}
+                            {deal.page ? t('discover') : t('comingSoon')}
                          </span>
                          <div className="bg-gray-100 dark:bg-gray-700 p-2 rounded-full group-hover:bg-amber-100 dark:group-hover:bg-amber-900/30 transition-colors">
                             <ArrowRightOnRectangleIcon className="w-4 h-4 text-gray-600 dark:text-gray-300 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
@@ -106,7 +105,7 @@ export const TodaysDeal: React.FC<TodaysDealProps> = ({ onNavigate }) => {
                     aria-label="View all todays deals"
                     className="text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-1 hover:text-amber-500 transition-colors"
                 >
-                    {t('seeAll')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
+                    {t('discover')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
                 </button>
             </div>
             <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4 md:grid md:grid-cols-4 md:gap-8 md:mx-0 md:px-0 md:overflow-visible">

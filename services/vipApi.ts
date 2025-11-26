@@ -1,12 +1,12 @@
-
 export interface VipService {
     id: string;
     title: string;
     category: string;
     description: string;
     image: string;
-    publicPrice: number;
-    vipPrice: number;
+    publicPrice?: number;
+    vipPrice?: number;
+    displayPrice?: string;
     discountPercentage: number;
     bookingUrl: string;
 }
@@ -17,9 +17,8 @@ const vipServices: VipService[] = [
         title: 'Location Jet Privé',
         category: 'Transport',
         description: 'Vol privé au départ de Genève vers toutes destinations en Europe.',
-        image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format&fit=crop',
-        publicPrice: 5500,
-        vipPrice: 3850,
+        image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=800&auto=format=fit=crop',
+        displayPrice: 'dès 8000 CHF',
         discountPercentage: 30,
         bookingUrl: 'https://www.netjets.com'
     },
@@ -28,20 +27,31 @@ const vipServices: VipService[] = [
         title: 'Hélicoptère Mont-Blanc',
         category: 'Experience',
         description: 'Survol panoramique privé du massif du Mont-Blanc (45 min).',
-        image: 'https://images.unsplash.com/photo-1506460737377-25a47182c62c?q=80&w=800&auto=format&fit=crop',
-        publicPrice: 450,
-        vipPrice: 315,
-        discountPercentage: 30,
-        bookingUrl: 'https://www.swiftcopters.ch'
+        image: 'https://images.unsplash.com/photo-1728763670545-06158f3a9d9a?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        publicPrice: 199,
+        vipPrice: 179,
+        discountPercentage: 10,
+        bookingUrl: 'https://chamonix-helico.fr/'
+    },
+    {
+        id: 'shopping-luxe',
+        title: 'Shopping de luxe personnalisé',
+        category: 'Experience',
+        description: 'Accès privé aux boutiques de Genève avec un personal shopper.',
+        image: 'https://images.unsplash.com/photo-1680789526833-9b09dee3d68e?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        publicPrice: 380,
+        vipPrice: 290,
+        discountPercentage: 24,
+        bookingUrl: 'https://www.globus.ch/personal-shopping'
     },
     {
         id: 'chauffeur-v-class',
         title: 'Chauffeur Privé (Journée)',
         category: 'Transport',
         description: 'Mise à disposition Mercedes Classe V avec chauffeur (10h).',
-        image: 'https://images.unsplash.com/photo-1631027124192-3343a4e9b6d6?q=80&w=800&auto=format&fit=crop',
-        publicPrice: 1200,
-        vipPrice: 840,
+        image: 'https://images.unsplash.com/photo-1730800328198-f9efbf9db53f?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        publicPrice: 715,
+        vipPrice: 500,
         discountPercentage: 30,
         bookingUrl: 'https://www.gmc-limousines.ch'
     },
@@ -50,7 +60,7 @@ const vipServices: VipService[] = [
         title: 'Chef Étoilé à Domicile',
         category: 'Gastronomie',
         description: 'Menu gastronomique préparé et servi dans votre résidence.',
-        image: 'https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=800&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1601002357064-e43894c23107?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         publicPrice: 350,
         vipPrice: 245,
         discountPercentage: 30,

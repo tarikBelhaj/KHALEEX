@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { SparklesIcon, ChevronRightIcon } from './Icons';
 import { fetchVipServices, VipService } from '../services/vipApi';
@@ -47,7 +46,7 @@ export const VipExperiences: React.FC<VipExperiencesProps> = ({ onNavigate }) =>
             onClick={() => onNavigate('vip-only')}
             className="text-sm font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1 hover:text-amber-500 transition-colors"
           >
-              {t('seeAll')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
+              {t('discover')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
           </button>
       </div>
       

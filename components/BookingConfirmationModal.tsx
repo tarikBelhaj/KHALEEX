@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Hotel } from './HotelCard';
 import { XIcon, CreditCardIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 interface HotelBookingModalProps {
   hotel: Hotel;
@@ -8,6 +9,7 @@ interface HotelBookingModalProps {
 }
 
 export const HotelBookingModal: React.FC<HotelBookingModalProps> = ({ hotel, onClose }) => {
+    const { t } = useTranslation();
     const today = new Date().toISOString().split('T')[0];
     const [checkIn, setCheckIn] = useState(today);
     const [checkOut, setCheckOut] = useState('');
@@ -37,12 +39,12 @@ export const HotelBookingModal: React.FC<HotelBookingModalProps> = ({ hotel, onC
                     <XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </button>
 
-                <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100 mt-2">Détails de votre séjour</h2>
-                <p className="text-gray-600 dark:text-gray-300 mt-1">Pour l'hôtel <span className="font-semibold">{hotel.name}</span>.</p>
+                <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100 mt-2">{t('stayDetails')}</h2>
+                <p className="text-gray-600 dark:text-gray-300 mt-1">{t('forHotel')} <span className="font-semibold">{hotel.name}</span>.</p>
                 
                 <div className="space-y-4 mt-6">
                     <div>
-                        <label htmlFor="checkin" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date d'arrivée</label>
+                        <label htmlFor="checkin" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('checkInDate')}</label>
                         <input 
                             type="date" 
                             id="checkin"
@@ -53,7 +55,7 @@ export const HotelBookingModal: React.FC<HotelBookingModalProps> = ({ hotel, onC
                         />
                     </div>
                      <div>
-                        <label htmlFor="checkout" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date de départ</label>
+                        <label htmlFor="checkout" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('checkOutDate')}</label>
                         <input 
                             type="date" 
                             id="checkout"
@@ -64,7 +66,7 @@ export const HotelBookingModal: React.FC<HotelBookingModalProps> = ({ hotel, onC
                         />
                     </div>
                      <div>
-                        <label htmlFor="guests" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre de voyageurs</label>
+                        <label htmlFor="guests" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('travelersCount')}</label>
                         <input 
                             type="number" 
                             id="guests"
@@ -82,9 +84,9 @@ export const HotelBookingModal: React.FC<HotelBookingModalProps> = ({ hotel, onC
                     className="mt-6 w-full bg-blue-900 text-white font-bold py-3 px-5 rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                     <CreditCardIcon className="w-6 h-6"/>
-                    Finaliser la réservation
+                    {t('finalizeBooking')}
                 </button>
-                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-3">Vous serez redirigé vers notre partenaire pour finaliser votre réservation en toute sécurité.</p>
+                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-3">{t('redirectPartnerHotel')}</p>
             </div>
         </div>
     );

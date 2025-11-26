@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
     ArrowLeftIcon, 
@@ -12,6 +11,7 @@ import {
     UserGroupIcon
 } from '../Icons';
 import { User } from '../../types';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface PageProps {
   onBack: () => void;
@@ -21,24 +21,25 @@ interface PageProps {
   onNavigate: (page: string) => void;
 }
 
-const menuItems = [
-    { text: 'Informations personnelles', icon: <AccountIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
-    { text: 'Méthodes de paiement', icon: <CreditCardIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
-    { text: 'Notifications', icon: <BellIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
-    { text: 'Sécurité & Connexion', icon: <ShieldCheckIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
-];
-
-const supportItems = [
-    { text: 'Aide & Support', icon: <QuestionMarkCircleIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
-];
-
 export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogout, onNavigate }) => {
+  const { t } = useTranslation();
+
+  const menuItems = [
+    { text: t('personalInfo'), icon: <AccountIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
+    { text: t('paymentMethods'), icon: <CreditCardIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
+    { text: t('notifications'), icon: <BellIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
+    { text: t('securityAndLogin'), icon: <ShieldCheckIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
+  ];
+
+  const supportItems = [
+    { text: t('helpAndSupport'), icon: <QuestionMarkCircleIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /> },
+  ];
   
   // Legal menu items specific for mobile navigation via Account page
   const legalItems = [
-    { text: 'Mentions Légales', action: () => onNavigate('legal-notice') },
-    { text: 'CGU', action: () => onNavigate('terms') },
-    { text: 'Confidentialité', action: () => onNavigate('privacy') },
+    { text: t('legalNotice'), action: () => onNavigate('legal-notice') },
+    { text: t('termsShort'), action: () => onNavigate('terms') },
+    { text: t('privacyShort'), action: () => onNavigate('privacy') },
   ];
 
   if (!user) {
@@ -48,27 +49,27 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
                 <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
                 <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                 </button>
-                <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mon Compte</h1>
+                <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{t('myAccount')}</h1>
             </header>
             <main className="flex-grow flex flex-col items-center justify-center p-6 text-center max-w-md mx-auto w-full">
                 <div className="bg-amber-100 dark:bg-amber-900/30 p-4 rounded-full mb-6">
                     <UserGroupIcon className="w-12 h-12 text-amber-600 dark:text-amber-400" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Bienvenue sur Khaleex</h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-8">Connectez-vous pour accéder à votre profil VIP et débloquer des offres exclusives.</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t('welcomeToKhaleex')}</h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-8">{t('loginToAccessVip')}</p>
                 
                 <button 
                     onClick={onLogin}
                     className="w-full bg-blue-900 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200"
                 >
-                    Se connecter / S'inscrire
+                    {t('loginRegister')}
                 </button>
-                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-6">En continuant, vous acceptez nos conditions générales d'utilisation.</p>
+                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-6">{t('byContinuingYouAgree')}</p>
                  
                  {/* Legal Links for non-logged users */}
                  <div className="mt-8 flex gap-4 text-xs text-gray-400 justify-center">
-                    <button onClick={() => onNavigate('terms')} className="hover:text-gray-600">CGU</button>
-                    <button onClick={() => onNavigate('privacy')} className="hover:text-gray-600">Confidentialité</button>
+                    <button onClick={() => onNavigate('terms')} className="hover:text-gray-600">{t('termsShort')}</button>
+                    <button onClick={() => onNavigate('privacy')} className="hover:text-gray-600">{t('privacyShort')}</button>
                  </div>
             </main>
         </div>
@@ -81,7 +82,7 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
         <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
           <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
-        <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mon Compte</h1>
+        <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{t('myAccount')}</h1>
       </header>
       <main className="p-4 max-w-3xl mx-auto space-y-6">
         
@@ -130,7 +131,7 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
 
         {/* Legal Section (Mobile Accessible) */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700/80">
-            <h3 className="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Légal & Conformité</h3>
+            <h3 className="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">{t('legalAndCompliance')}</h3>
              <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                 {legalItems.map((item, index) => (
                     <li key={index} onClick={item.action} className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors last:rounded-b-2xl">
@@ -151,7 +152,7 @@ export const AccountPage: React.FC<PageProps> = ({ onBack, user, onLogin, onLogo
                 className="w-full flex items-center justify-center gap-3 p-4 bg-red-50 dark:bg-red-900/30 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
              >
                 <ArrowRightOnRectangleIcon className="w-6 h-6 text-red-600 dark:text-red-400" />
-                <span className="font-bold text-red-600 dark:text-red-400">Se déconnecter</span>
+                <span className="font-bold text-red-600 dark:text-red-400">{t('logout')}</span>
             </button>
         </div>
       </main>

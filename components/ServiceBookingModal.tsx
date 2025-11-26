@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { XIcon, CreditCardIcon } from './Icons';
 import { HomeService } from './pages/GenevaPage';
-
+import { useTranslation } from '../contexts/LanguageContext';
 
 interface ServiceBookingModalProps {
   service: HomeService;
@@ -9,6 +9,7 @@ interface ServiceBookingModalProps {
 }
 
 export const ServiceBookingModal: React.FC<ServiceBookingModalProps> = ({ service, onClose }) => {
+    const { t } = useTranslation();
     const today = new Date().toISOString().split('T')[0];
     const [bookingDate, setBookingDate] = useState(today);
     const [bookingTime, setBookingTime] = useState('10:00');
@@ -33,12 +34,12 @@ export const ServiceBookingModal: React.FC<ServiceBookingModalProps> = ({ servic
                     <XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </button>
 
-                <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100 mt-2">Détails de votre service</h2>
-                <p className="text-gray-600 dark:text-gray-300 mt-1">Pour le service <span className="font-semibold">{service.name}</span>.</p>
+                <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100 mt-2">{t('serviceDetails')}</h2>
+                <p className="text-gray-600 dark:text-gray-300 mt-1">{t('forService')} <span className="font-semibold">{service.name}</span>.</p>
                 
                 <div className="space-y-4 mt-6">
                     <div>
-                        <label htmlFor="booking-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date</label>
+                        <label htmlFor="booking-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('date')}</label>
                         <input 
                             type="date" 
                             id="booking-date"
@@ -49,7 +50,7 @@ export const ServiceBookingModal: React.FC<ServiceBookingModalProps> = ({ servic
                         />
                     </div>
                      <div>
-                        <label htmlFor="booking-time" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Heure de début</label>
+                        <label htmlFor="booking-time" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('startTime')}</label>
                         <input 
                             type="time" 
                             id="booking-time"
@@ -59,7 +60,7 @@ export const ServiceBookingModal: React.FC<ServiceBookingModalProps> = ({ servic
                         />
                     </div>
                      <div>
-                        <label htmlFor="duration" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Durée (en heures)</label>
+                        <label htmlFor="duration" className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t('durationHours')}</label>
                         <input 
                             type="number" 
                             id="duration"
@@ -77,9 +78,9 @@ export const ServiceBookingModal: React.FC<ServiceBookingModalProps> = ({ servic
                     className="mt-6 w-full bg-blue-900 text-white font-bold py-3 px-5 rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                     <CreditCardIcon className="w-6 h-6"/>
-                    Réserver sur le site partenaire
+                    {t('bookOnPartnerSite')}
                 </button>
-                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-3">Vous serez redirigé pour finaliser votre réservation exclusive.</p>
+                <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-3">{t('redirectPartnerService')}</p>
             </div>
         </div>
     );

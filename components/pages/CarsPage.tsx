@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeftIcon, SpinnerIcon, InfoIcon, FilterIcon } from '../Icons';
 import { CarCard, Car } from '../CarCard';
@@ -6,6 +5,7 @@ import { CarBookingModal } from '../CarBookingModal';
 import { CurrencySwitcher } from '../CurrencySwitcher';
 import { fetchSixtVehicles } from '../../services/sixtApi';
 import { CarFilterModal, CarFilters } from '../CarFilterModal';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface PageProps {
   onBack: () => void;
@@ -14,6 +14,7 @@ interface PageProps {
 }
 
 export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChange }) => {
+  const { t } = useTranslation();
   const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cars, setCars] = useState<Car[]>([]);
@@ -39,7 +40,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
         });
 
       } catch (err) {
-        setError('Impossible de charger les véhicules. Veuillez réessayer plus tard.');
+        setError(t('errorLoadingVehicles'));
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -47,7 +48,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
     };
 
     loadCars();
-  }, []);
+  }, [t]);
   
   const { allMakes, maxPrice, initialFilters } = useMemo(() => {
     if (cars.length === 0) {
@@ -101,7 +102,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
       return (
         <div className="col-span-full flex flex-col items-center justify-center text-center h-64">
           <SpinnerIcon className="w-12 h-12 text-blue-900 dark:text-amber-400 animate-spin" />
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Chargement des véhicules en cours...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">{t('loadingVehicles')}</p>
         </div>
       );
     }
@@ -110,7 +111,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
        return (
         <div className="col-span-full flex flex-col items-center justify-center text-center h-64 bg-red-50 dark:bg-red-900/20 p-4 rounded-2xl">
           <InfoIcon className="w-12 h-12 text-red-500" />
-          <p className="mt-4 font-semibold text-red-700 dark:text-red-300">Une erreur est survenue</p>
+          <p className="mt-4 font-semibold text-red-700 dark:text-red-300">{t('errorOccurred')}</p>
           <p className="text-red-600 dark:text-red-400">{error}</p>
         </div>
       );
@@ -129,7 +130,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
             />
           )) : (
             <div className="col-span-full text-center py-10">
-                <p className="text-gray-500 dark:text-gray-400">Aucun véhicule ne correspond à vos critères.</p>
+                <p className="text-gray-500 dark:text-gray-400">{t('noVehiclesFound')}</p>
             </div>
           )}
         </div>
@@ -143,10 +144,10 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
             <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
               <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             </button>
-            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Voitures de prestige</h1>
+            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{t('prestigeCars')}</h1>
         </div>
         <div className="flex items-center gap-2">
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Admin</span>
+            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{t('admin')}</span>
             <label className="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" checked={isAdmin} onChange={() => setIsAdmin(!isAdmin)} className="sr-only peer" />
               <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -155,7 +156,7 @@ export const CarsPage: React.FC<PageProps> = ({ onBack, currency, onCurrencyChan
       </header>
       <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-            <p className="text-base text-gray-600 dark:text-gray-400 flex-grow">Véhicules disponibles en temps réel.</p>
+            <p className="text-base text-gray-600 dark:text-gray-400 flex-grow">{t('realTimeVehicles')}</p>
             <div className="flex gap-3 w-full md:w-auto">
                 <button 
                     onClick={() => setFilterModalOpen(true)}

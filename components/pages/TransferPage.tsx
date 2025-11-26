@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTranslation } from '../../contexts/LanguageContext';
 import { 
@@ -29,7 +28,7 @@ export const TransferPage: React.FC<PageProps> = ({ onBack }) => {
           type: "First Class",
           passengers: 3,
           luggage: 2,
-          image: "https://images.unsplash.com/photo-1680451553374-09d8d6a1ca58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          image: "https://images.unsplash.com/photo-1680451553374-09d8d6a1ca58?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
           name: "Mercedes-Benz V-Class",
@@ -75,7 +74,7 @@ export const TransferPage: React.FC<PageProps> = ({ onBack }) => {
                                     <UserGroupIcon className="w-4 h-4" /> {car.passengers}
                                 </div>
                                 <div className="flex items-center gap-1.5">
-                                    <ShieldCheckIcon className="w-4 h-4" /> {car.luggage} Valises
+                                    <ShieldCheckIcon className="w-4 h-4" /> {car.luggage} {t('suitcases')}
                                 </div>
                                  <div className="flex items-center gap-1.5">
                                     <WifiIcon className="w-4 h-4" /> Wi-Fi

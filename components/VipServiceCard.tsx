@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { VipService } from '../services/vipApi';
 import { SparklesIcon, ArrowRightOnRectangleIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 interface VipServiceCardProps {
     service: VipService;
@@ -9,10 +9,11 @@ interface VipServiceCardProps {
 }
 
 export const VipServiceCard: React.FC<VipServiceCardProps> = ({ service, isFullWidth = false }) => {
+    const { t } = useTranslation();
     return (
         <button 
             onClick={() => window.open(service.bookingUrl, '_blank')}
-            className={`relative rounded-2xl overflow-hidden shadow-lg text-white text-left group transition-transform duration-200 hover:scale-105 ${isFullWidth ? 'w-full h-64' : 'w-72 h-56 flex-shrink-0'}`}
+            className={`relative rounded-2xl overflow-hidden shadow-lg text-white text-left group transition-transform duration-200 hover:scale-105 ${isFullWidth ? 'w-full h-64' : 'w-72 md:w-full h-56 flex-shrink-0'}`}
         >
             <img src={service.image} alt={service.title} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -36,18 +37,26 @@ export const VipServiceCard: React.FC<VipServiceCardProps> = ({ service, isFullW
                 )}
 
                 {/* Price Comparison */}
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-2 flex items-center justify-between mt-2 border border-white/10">
-                    <div className="flex flex-col">
-                        <span className="text-[10px] text-gray-400 uppercase">Public Price</span>
-                        <span className="text-sm text-gray-400 line-through decoration-red-500 decoration-2">CHF {service.publicPrice}</span>
-                    </div>
-                    <div className="h-8 w-px bg-gray-500/50 mx-2"></div>
-                    <div className="flex flex-col items-end">
-                        <span className="text-[10px] text-amber-400 uppercase font-bold flex items-center gap-1">
-                             <SparklesIcon className="w-3 h-3" /> VIP Price
-                        </span>
-                        <span className="text-xl font-bold text-white">CHF {service.vipPrice}</span>
-                    </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-2 flex items-center justify-center mt-2 border border-white/10 min-h-[58px]">
+                    {service.displayPrice ? (
+                        <div className="w-full text-center">
+                            <span className="text-lg font-bold text-white">{service.displayPrice}</span>
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-between w-full">
+                            <div className="flex flex-col">
+                                <span className="text-[10px] text-gray-400 uppercase">{t('publicPrice')}</span>
+                                <span className="text-sm text-gray-400 line-through decoration-red-500 decoration-2">CHF {service.publicPrice}</span>
+                            </div>
+                            <div className="h-8 w-px bg-gray-500/50 mx-2"></div>
+                            <div className="flex flex-col items-end">
+                                <span className="text-[10px] text-amber-400 uppercase font-bold flex items-center gap-1">
+                                    <SparklesIcon className="w-3 h-3" /> {t('vipPrice')}
+                                </span>
+                                <span className="text-xl font-bold text-white">CHF {service.vipPrice}</span>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </button>

@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { StarIcon, ChevronDownIcon, WifiIcon, SparklesIcon, SunIcon, MapPinIcon, CameraIcon, PhotoIcon, ChevronLeftIcon, ChevronRightIcon, KlookLogoIcon, ArrowRightOnRectangleIcon } from './Icons';
 import { useTranslation } from '../contexts/LanguageContext';
@@ -119,7 +118,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
         ) : (
             <div className="w-full h-full flex flex-col items-center justify-center">
                 <PhotoIcon className="w-12 h-12 text-gray-400 dark:text-gray-500" />
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Image non disponible</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{t('imageNotAvailable')}</p>
             </div>
         )}
 
@@ -165,7 +164,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
               className="absolute bottom-2 right-2 bg-black/60 text-white text-xs font-semibold py-1 px-2.5 rounded-md flex items-center gap-1.5 backdrop-blur-sm hover:bg-black/80 transition-colors z-10"
             >
               <CameraIcon className="w-4 h-4" />
-              {validImages.length > 0 ? "Changer l'image" : "Ajouter image"}
+              {validImages.length > 0 ? t('changeImage') : t('addImage')}
             </button>
           </>
         )}
@@ -185,7 +184,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
         {/* Price Comparison Section */}
         {rates && rates.length > 0 ? (
            <div className="mt-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-3 border border-gray-100 dark:border-gray-700">
-              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">Comparateur</p>
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">{t('priceComparator')}</p>
               <div className="space-y-2">
                 {rates.map((rate, idx) => (
                   <div key={idx} className="flex justify-between items-center text-sm">
@@ -195,15 +194,15 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
                 ))}
               </div>
               <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
-                 <span className="text-xs text-green-600 dark:text-green-400 font-bold">Meilleure offre</span>
+                 <span className="text-xs text-green-600 dark:text-green-400 font-bold">{t('bestOffer')}</span>
                  <span className="font-extrabold text-xl text-green-600 dark:text-green-400">{getConvertedPrice(price)}</span>
               </div>
            </div>
         ) : (
            <div className="flex justify-between items-center mt-4">
             <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">dès</p>
-              <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">{getConvertedPrice(price)} <span className="font-normal text-sm">/nuit</span></p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">{t('from')}</p>
+              <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">{getConvertedPrice(price)} <span className="font-normal text-sm">{t('perNight')}</span></p>
             </div>
           </div>
         )}
@@ -237,7 +236,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onBook, currency, i
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/60 text-gray-600 dark:text-gray-300 text-sm font-semibold py-2.5 px-4 flex items-center justify-center gap-2 transition-colors border-t dark:border-gray-700"
         >
-          <span>{isExpanded ? 'Cacher les détails' : 'Voir les détails'}</span>
+          <span>{isExpanded ? t('hideDetails') : t('showDetails')}</span>
           <ChevronDownIcon className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
         </button>
     </div>

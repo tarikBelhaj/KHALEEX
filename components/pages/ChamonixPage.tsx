@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { ArrowLeftIcon, AirbnbLogoIcon, KlookLogoIcon, StarIcon, UserGroupIcon } from '../Icons';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface PageProps {
   onBack: () => void;
@@ -61,6 +61,7 @@ const excursions: Excursion[] = [
 ];
 
 const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
+    const { t } = useTranslation();
     const { title, description, image, platform, price, rating, reviews, bookingUrl } = excursion;
 
     return (
@@ -80,27 +81,27 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
                     <div className="flex items-center gap-1">
                         <StarIcon className="w-4 h-4 text-amber-500" />
                         <span className="font-semibold text-gray-700 dark:text-gray-300">{rating.toFixed(1)}</span>
-                        <span>({reviews} avis)</span>
+                        <span>({reviews} {t('reviews')})</span>
                     </div>
                      <div className="flex items-center gap-1.5">
                         <UserGroupIcon className="w-4 h-4"/>
-                        <span>Inspiré de {platform}</span>
+                        <span>{t('inspiredBy')} {platform}</span>
                     </div>
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-grow leading-relaxed">{description}</p>
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                     <div>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">à partir de</p>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide">{t('from')}</p>
                         <p className="font-extrabold text-2xl text-gray-900 dark:text-gray-50">
                            €{price}
-                           <span className="font-normal text-sm text-gray-500"> /pers.</span>
+                           <span className="font-normal text-sm text-gray-500"> {t('fromPerPerson')}</span>
                         </p>
                     </div>
                     <button 
                         onClick={() => window.open(bookingUrl, '_blank')}
                         className="bg-blue-900 text-white font-bold py-3 px-8 text-sm rounded-xl shadow-md transition-transform duration-200 hover:scale-105"
                     >
-                        Réserver
+                        {t('book')}
                     </button>
                 </div>
             </div>
@@ -110,17 +111,18 @@ const ExcursionCard: React.FC<{ excursion: Excursion }> = ({ excursion }) => {
 
 
 export const ChamonixPage: React.FC<PageProps> = ({ onBack }) => {
+  const { t } = useTranslation();
   return (
     <div className="animate-fade-in pb-28 md:pb-0">
       <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10 p-4 flex items-center gap-4 border-b dark:border-gray-700">
         <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
           <ArrowLeftIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
-        <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Excursions à Chamonix</h1>
+        <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{t('excursionsChamonix')}</h1>
       </header>
       <main className="p-5 md:p-10 max-w-7xl mx-auto space-y-8">
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
-            Découvrez des expériences uniques au pied du Mont-Blanc, inspirées des meilleures offres Airbnb et Klook. Réservez facilement via notre service de conciergerie WhatsApp.
+            {t('excursionsChamonixSubtitle')}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {excursions.map((excursion, index) => (

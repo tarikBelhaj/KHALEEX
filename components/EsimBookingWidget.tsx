@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from '../contexts/LanguageContext';
 import { SimCardIcon, SignalIcon, GlobeIcon, CheckCircleIcon, ArrowRightOnRectangleIcon } from './Icons';
@@ -10,25 +9,25 @@ interface Plan {
     price: string;
 }
 
-const popularCountries = [
-    { code: 'CH', name: 'Switzerland', flag: '🇨🇭' },
-    { code: 'EU', name: 'Europe (Regional)', flag: '🇪🇺' },
-    { code: 'FR', name: 'France', flag: '🇫🇷' },
-    { code: 'AE', name: 'UAE', flag: '🇦🇪' },
-    { code: 'US', name: 'USA', flag: '🇺🇸' },
-];
-
-const plans: Plan[] = [
-    { id: '1gb', data: '1 GB', duration: '7 Days', price: '€ 5.00' },
-    { id: '3gb', data: '3 GB', duration: '15 Days', price: '€ 12.00' },
-    { id: '10gb', data: '10 GB', duration: '30 Days', price: '€ 25.00' },
-    { id: 'unl', data: 'Unlimited', duration: '15 Days', price: '€ 45.00' },
-];
-
 export const EsimBookingWidget: React.FC = () => {
     const { t } = useTranslation();
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+    const popularCountries = [
+        { code: 'CH', name: t('countrySwitzerland'), flag: '🇨🇭' },
+        { code: 'EU', name: t('countryEurope'), flag: '🇪🇺' },
+        { code: 'FR', name: t('countryFrance'), flag: '🇫🇷' },
+        { code: 'AE', name: t('countryUae'), flag: '🇦🇪' },
+        { code: 'US', name: t('countryUsa'), flag: '🇺🇸' },
+    ];
+
+    const plans: Plan[] = [
+        { id: '1gb', data: '1 GB', duration: t('days7'), price: '€ 5.00' },
+        { id: '3gb', data: '3 GB', duration: t('days15'), price: '€ 12.00' },
+        { id: '10gb', data: '10 GB', duration: t('days30'), price: '€ 25.00' },
+        { id: 'unl', data: 'Unlimited', duration: t('days15'), price: '€ 45.00' },
+    ];
 
     const affiliateLink = "https://yesim.tpo.lu/hkdLcVdT";
 
@@ -87,7 +86,7 @@ export const EsimBookingWidget: React.FC = () => {
                                 onChange={(e) => setSelectedCountry(e.target.value)}
                                 className="w-full bg-white/90 hover:bg-white text-indigo-900 font-bold rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-lime-400 appearance-none cursor-pointer shadow-sm transition-colors"
                             >
-                                <option value="" disabled>Select a country...</option>
+                                <option value="" disabled>{t('selectCountryPlaceholder')}</option>
                                 {popularCountries.map(c => (
                                     <option key={c.code} value={c.code}>{c.flag} {c.name}</option>
                                 ))}
@@ -125,7 +124,7 @@ export const EsimBookingWidget: React.FC = () => {
                             <h3 className="text-white font-bold text-xs mb-3 uppercase tracking-wider opacity-70">{t('summary')}</h3>
                             <div className="space-y-2">
                                 <div className="flex justify-between text-indigo-100 text-sm">
-                                    <span>Destination:</span>
+                                    <span>{t('destination')}:</span>
                                     <span className="font-bold text-white flex items-center gap-1">
                                         {selectedCountryDetails.flag} {selectedCountryDetails.name}
                                     </span>

@@ -11,7 +11,7 @@ const experiences: Experience[] = [
   {
     title: 'Tour en hélicoptère des Alpes',
     description: 'Survolez les sommets enneigés et les glaciers.',
-    image: 'https://images.unsplash.com/photo-1726212859367-ffb30266292f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1726212859367-ffb30266292f?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     badge: 'Exclusivité',
     bookingUrl: 'https://www.getyourguide.com/geneva-l28/panoramic-helicopter-tour-over-the-swiss-alps-from-geneva-t61248/'
   },
@@ -21,13 +21,6 @@ const experiences: Experience[] = [
     image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=800&auto=format&fit=crop',
     badge: 'Accès VIP',
     bookingUrl: 'https://www.airbnb.com/experiences/169811'
-  },
-   {
-    title: 'Shopping de luxe personnalisé',
-    description: 'Accès privé aux boutiques de Genève.',
-    image: 'https://images.unsplash.com/photo-1680789526833-9b09dee3d68e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    badge: 'Sur Invitation',
-    bookingUrl: 'https://www.klook.com/en-US/activity/17300-fox-town-factory-stores-shopping-tour-milan/'
   },
   {
     title: 'Réserver un Jet Privé',

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from '../contexts/LanguageContext';
 import { 
@@ -70,7 +69,7 @@ export const TransferBookingWidget: React.FC = () => {
                 <div>
                     <div className="flex items-center gap-2 mb-2">
                         <span className="bg-white/10 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-lg">
-                            VIP Transfer
+                            {t('vipTransfer')}
                         </span>
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-md">

@@ -1,6 +1,3 @@
-
-
-
 export type Deal = {
     id: string;
     title: string;
@@ -14,21 +11,21 @@ const mockDeals: Deal[] = [
         id: 'deal-geneva',
         title: 'Genève', 
         subtitle: 'Chef, Coach & plus',
-        image: 'https://images.unsplash.com/photo-1574904935745-7e40279f589d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1574904935745-7e40279f589d?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         page: 'geneva'
     },
     { 
         id: 'deal-megeve',
         title: 'Megève', 
         subtitle: 'Ski & Luxe',
-        image: 'https://images.unsplash.com/photo-1704236042190-f67764a13218?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1704236042190-f67764a13218?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        page: 'hotels'
     },
     { 
         id: 'deal-chamonix',
         title: 'Chamonix', 
         subtitle: 'Excursions Mont-Blanc',
         image: 'https://images.unsplash.com/photo-1585821244330-7029d402beb2?q=80&w=765&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        page: 'chamonix'
     },
      { 
         id: 'deal-montreux',
@@ -47,7 +44,6 @@ const mockDeals: Deal[] = [
         title: 'Gstaad', 
         subtitle: 'Palace & Nature',
         image: 'https://lh3.googleusercontent.com/proxy/wWjgPa7VSiveDNqrcbPc6MCyu4pvovRNuhHecHnv5CZZ0Y5V9R6yDTLfEpU0uVBcRyNc0v5qdHU0rHze5L_flAUJAb26xWI8Ka1jrJiAjjpdkwc_fcV27OsESzr4o5PIl0pBwI7fldN6x4UxDyyPhsldjPW_TdA=s680-w680-h510-rw',
-        page: 'hotels'
     },
     { 
         id: 'deal-interlaken',

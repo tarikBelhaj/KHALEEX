@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { XIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export interface CarFilters {
   maxPrice: number;
@@ -18,6 +19,7 @@ interface CarFilterModalProps {
 }
 
 export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose, onApply, allMakes, initialFilters, currentFilters, maxPrice }) => {
+  const { t } = useTranslation();
   const [filters, setFilters] = useState<CarFilters>(currentFilters);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
     <div className="fixed inset-0 bg-black/60 z-50 flex flex-col justify-end animate-fade-in">
       <div className="bg-white dark:bg-gray-800 rounded-t-2xl shadow-2xl w-full max-w-md mx-auto flex flex-col" style={{ height: '85vh' }}>
         <header className="flex items-center justify-between p-4 border-b dark:border-gray-700 flex-shrink-0">
-          <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100">Filtres Véhicules</h2>
+          <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100">{t('carFilters')}</h2>
           <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
             <XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </button>
@@ -63,7 +65,7 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
         <main className="p-4 overflow-y-auto flex-grow space-y-6">
             {/* Price Filter */}
             <section>
-                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">Prix maximum par jour</h3>
+                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">{t('maxPricePerDay')}</h3>
                 <div className="px-2">
                     <input
                         type="range"
@@ -84,7 +86,7 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
 
             {/* Transmission Filter */}
             <section>
-                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">Transmission</h3>
+                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">{t('transmission')}</h3>
                 <div className="flex gap-2">
                     {(['Auto', 'Manual'] as const).map(type => (
                         <button 
@@ -96,7 +98,7 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
                                 : 'bg-white border-gray-300 text-gray-700 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200'
                             }`}
                         >
-                            {type}
+                            {t(type.toLowerCase())}
                         </button>
                     ))}
                 </div>
@@ -104,7 +106,7 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
             
             {/* Make Filter */}
             <section>
-                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">Marque</h3>
+                <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-200 mb-3">{t('make')}</h3>
                 <div className="space-y-3">
                     {allMakes.map(make => (
                         <label key={make} className="flex items-center gap-3 cursor-pointer">
@@ -126,13 +128,13 @@ export const CarFilterModal: React.FC<CarFilterModalProps> = ({ isOpen, onClose,
                 onClick={handleReset}
                 className="font-bold text-gray-700 dark:text-gray-200 hover:underline"
             >
-                Réinitialiser
+                {t('reset')}
             </button>
             <button
                 onClick={handleApply}
                 className="bg-blue-900 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-transform duration-200 hover:scale-105"
             >
-                Appliquer
+                {t('apply')}
             </button>
         </footer>
       </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { HomeIcon, DealsIcon, AccountIcon, SunIcon, MoonIcon, LogoIcon } from './Icons';
 import { useTranslation } from '../contexts/LanguageContext';
@@ -73,10 +72,10 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onNavigate, c
 
         <div className="p-4 border-t border-gray-100 dark:border-gray-800">
             <div className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-xl p-4 text-white shadow-lg">
-                <p className="text-xs opacity-80 mb-1">Besoin d'aide ?</p>
-                <p className="font-bold text-sm mb-2">Support VIP 24/7</p>
+                <p className="text-xs opacity-80 mb-1">{t('needHelp')}</p>
+                <p className="font-bold text-sm mb-2">{t('vipSupport')}</p>
                 <button className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg w-full hover:bg-white/30 transition-colors">
-                    Contacter
+                    {t('contactUs')}
                 </button>
             </div>
         </div>

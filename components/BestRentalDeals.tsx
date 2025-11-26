@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronRightIcon } from './Icons';
 import { useTranslation } from '../contexts/LanguageContext';
@@ -52,7 +51,7 @@ export const BestRentalDeals: React.FC<BestRentalDealsProps> = ({ onNavigate }) 
                     onClick={() => onNavigate('cars')}
                     className="text-sm font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:text-blue-500 transition-colors"
                 >
-                    {t('seeAll')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
+                    {t('discover')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
                 </button>
             </div>
             

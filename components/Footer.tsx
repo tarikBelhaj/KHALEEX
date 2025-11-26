@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTranslation } from '../contexts/LanguageContext';
 
@@ -36,14 +35,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Owner: Tarik Belhaj
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-              Email: contact@khaleex.com
+              {t('contactEmailLabel')}: contact@khaleex.com
             </p>
           </div>
 
           {/* Legal Links */}
           <div>
             <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
-                {language === 'fr' ? 'Légal' : language === 'ar' ? 'قانوني' : 'Legal'}
+                {t('legal')}
             </h3>
             <ul className="space-y-2">
               {links.map((link) => (
@@ -62,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Contact / Support */}
           <div>
             <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
-                 {language === 'fr' ? 'Aide' : language === 'ar' ? 'مساعدة' : 'Support'}
+                 {t('support')}
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
               WhatsApp Support: 24/7

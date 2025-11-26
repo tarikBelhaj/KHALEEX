@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { AccountIcon, CogIcon, CameraIcon, PhotoIcon, ChevronLeftIcon, ChevronRightIcon } from './Icons';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export interface Car {
   make: string;
@@ -35,6 +36,7 @@ const currencySymbols = {
 };
 
 export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin, onImageUpload }) => {
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { name, type, seats, transmission, price, images } = car;
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -73,7 +75,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin
         ) : (
           <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex flex-col items-center justify-center">
             <PhotoIcon className="w-12 h-12 text-gray-400 dark:text-gray-500" />
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Aucune image</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{t('noImage')}</p>
           </div>
         )}
 
@@ -113,7 +115,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin
               className="absolute bottom-2 right-2 bg-black/60 text-white text-xs font-semibold py-1 px-2.5 rounded-md flex items-center gap-1.5 backdrop-blur-sm hover:bg-black/80 transition-colors z-10"
             >
               <CameraIcon className="w-4 h-4" />
-              Changer l'image
+              {t('changeImage')}
             </button>
           </>
         )}
@@ -126,7 +128,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin
         <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400 mt-3 text-sm">
             <div className="flex items-center gap-1.5">
                 <AccountIcon className="w-5 h-5"/>
-                <span>{seats} Sièges</span>
+                <span>{seats} {t('seats')}</span>
             </div>
             <div className="flex items-center gap-1.5">
                 <CogIcon className="w-5 h-5"/>
@@ -135,14 +137,14 @@ export const CarCard: React.FC<CarCardProps> = ({ car, onBook, currency, isAdmin
         </div>
         <div className="flex justify-between items-center mt-4">
           <div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">dès</p>
-            <p className="font-extrabold text-xl text-gray-900 dark:text-gray-50">{getConvertedPrice()} <span className="font-normal text-sm">/jour</span></p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{t('from')}</p>
+            <p className="font-extrabold text-xl text-gray-900 dark:text-gray-50">{getConvertedPrice()} <span className="font-normal text-sm">{t('perDay')}</span></p>
           </div>
           <button 
             onClick={() => onBook(car)}
             className="bg-blue-900 text-white font-bold py-2 px-5 rounded-lg shadow-md transition-transform duration-200 hover:scale-105"
           >
-            Réserver
+            {t('book')}
           </button>
         </div>
       </div>
