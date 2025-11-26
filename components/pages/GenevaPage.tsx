@@ -22,7 +22,7 @@ const initialGenevaServicesData: HomeService[] = [
         name: "Chef Privé à Domicile",
         description: "Un chef étoilé concocte un menu sur mesure dans votre résidence.",
         icon: "ChefHat",
-        image: 'https://images.unsplash.com/photo-1601002357064-e43894c23107?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1601002357064-e43894c23107?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D%3D',
         bookingUrl: 'https://www.labelleassiette.fr/chef-a-domicile/geneve'
     },
     {
@@ -35,17 +35,30 @@ const initialGenevaServicesData: HomeService[] = [
 ];
 
 const featuredCars = [
-    { name: 'Mercedes-Benz S-Class', image: 'https://images.unsplash.com/photo-1616789916145-2b6555138259?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Range Rover Vogue', image: 'https://images.unsplash.com/photo-1580273916551-585a9b74f39d?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Porsche 911 Carrera', image: 'https://images.unsplash.com/photo-1604280918973-72e9d28256e2?q=80&w=800&auto=format&fit=crop' },
-    { name: 'Bentley Bentayga', image: 'https://images.unsplash.com/photo-1617892320643-951515c1b523?q=80&w=800&auto=format&fit=crop' },
+    { name: 'Mercedes-Benz S-Class', image: 'https://images.unsplash.com/photo-1680451553374-09d8d6a1ca58?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D%3D' },
+    { name: 'Range Rover Vogue', image: 'https://images.unsplash.com/photo-1646654184457-cd64cadcd3a3?q=80&w=687&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D%3D' },
+    { name: 'Porsche 911 Carrera', image: 'https://images.unsplash.com/photo-1646567799137-b1e1508b6b96?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D%3D' },
+    { name: 'Bentley Bentayga', image: 'https://www.bentleymotors.com/content/dam/bm/websites/bmcom/bentleymotors-com/models/24my/bentayga-swb/bentayga-swb-range-page/SWB%20Range%20Accessories.jpg/_jcr_content/renditions/original.image_file.1074.1432.file/SWB%20Range%20Accessories.jpg' },
 ];
 
 const rentalPartners = [
-    { name: 'Sixt', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sixt-Logo.svg/1024px-Sixt-Logo.svg.png' },
-    { name: 'Hertz', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Hertz_logo.svg/1200px-Hertz_logo.svg.png' },
-    { name: 'Yelo', logo: 'https://www.yelo.swiss/logo.svg' }
+    { name: 'Yelo', logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQHlXdrTfyNQOQ/company-logo_200_200/company-logo_200_200/0/1736243790577/yelo_logo?e=2147483647&v=beta&t=rsn7-k0Hke4FA8S3U3ISIMOFSzTSiiWi_2xvfdAKDrU' },
+    { name: 'Sixt', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8WzKf6QqcZ_pNB0P5G5q6DJ0vuSdptcEvyA&s' }
 ];
+
+const partnerCars = {
+  Yelo: [
+    { name: 'Mini Cooper Countryman S', image: 'https://ejar.iyelo.com:2200/webapigw/Attachments/1/Fleet/Model/2025/5/dec3ef8e-2d8b-4e7a-0bf8-08dd90ef2a34.png' },
+    { name: 'Volkswagen Tiguan', image: 'https://ejar.iyelo.com:2200/webapigw/Attachments/1/Fleet/Model/2025/6/a5fba100-4db0-4975-adf5-08ddac9cc9f6.png' },
+    { name: 'Volkswagen Golf', image: 'https://ejar.iyelo.com:2200/webapigw/Attachments/1/Fleet/Model/2025/2/32704df8-371e-43ae-0a4f-08dd44b57975.png' },
+    { name: 'Skoda Kodiaq', image: 'https://ejar.iyelo.com:2200/webapigw/Attachments/1/Fleet/Model/2024/12/61f58149-87ed-435b-4669-08dd2933d19d.png' }
+  ],
+  Sixt: [
+    { name: 'BMW iX', image: 'https://images.unsplash.com/photo-1640166619288-97c453823f66?q=80&w=1170&auto=format&fit=crop' },
+    { name: 'Audi Q4 e-tron', image: 'https://images.unsplash.com/photo-1682015822097-a1e4a3c11f44?q=80&w=1170&auto=format&fit=crop' },
+    { name: 'Mercedes EQA', image: 'https://images.unsplash.com/photo-1643301323863-14b49463c434?q=80&w=1170&auto=format&fit=crop' }
+  ]
+};
 
 // Helper component for service cards
 const ServiceIcon: React.FC<{ icon: string }> = ({ icon }) => {
@@ -128,6 +141,7 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [services, setServices] = usePersistentState<HomeService[]>('genevaServicesData', initialGenevaServicesData);
     const [selectedService, setSelectedService] = useState<HomeService | null>(null);
+    const [selectedPartner, setSelectedPartner] = useState<'Yelo' | 'Sixt'>('Yelo');
 
     const handleImageUpload = (index: number, file: File) => {
         const reader = new FileReader();
@@ -175,15 +189,32 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                     </div>
                     <div className="mt-8">
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('rentalPartners')}</h3>
-                        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 items-center">
+                        <div className="flex gap-6 items-center">
                             {rentalPartners.map(partner => (
-                                <div key={partner.name} className="bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700/60 flex flex-col items-center justify-center h-28 shadow-sm">
-                                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-full object-contain" />
-                                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mt-3 text-center">{partner.name}</p>
+                                <button key={partner.name} onClick={() => setSelectedPartner(partner.name as 'Yelo' | 'Sixt')}>
+                                    <div className={`bg-black rounded-full border border-gray-700/60 flex items-center justify-center w-28 h-28 shadow-md overflow-hidden transition-all duration-300 ${selectedPartner === partner.name ? 'ring-2 ring-amber-400 ring-offset-2 ring-offset-gray-50 dark:ring-offset-gray-900 scale-105' : 'opacity-60 hover:opacity-100'}`}>
+                                        <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain p-2" />
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Partner Car Carousel */}
+                    <div className="mt-8">
+                        <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4 md:grid md:grid-cols-4 md:gap-8 md:mx-0 md:px-0 md:overflow-visible">
+                            {partnerCars[selectedPartner].map((car, index) => (
+                                <div key={index} onClick={() => onNavigate('cars')} className="relative w-72 md:w-full h-48 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg text-white cursor-pointer group">
+                                    <img src={car.image} alt={car.name} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-300" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                                    <div className="relative z-10 p-4 flex flex-col h-full justify-end">
+                                        <h3 className="font-bold leading-tight text-lg">{car.name}</h3>
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
+
                 </section>
 
                 {/* At-Home Services Section */}
