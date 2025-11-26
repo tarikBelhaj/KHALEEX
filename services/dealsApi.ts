@@ -21,20 +21,20 @@ const mockDeals: Deal[] = [
         id: 'deal-megeve',
         title: 'Megève', 
         subtitle: 'Ski & Luxe',
-        image: 'https://images.unsplash.com/photo-1612608489129-23d906e58c70?q=80&w=800&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1704236042190-f67764a13218?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     { 
         id: 'deal-chamonix',
         title: 'Chamonix', 
         subtitle: 'Excursions Mont-Blanc',
-        image: 'https://images.unsplash.com/photo-1585821244330-7029d402beb2?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1585821244330-7029d402beb2?q=80&w=765&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         page: 'chamonix'
     },
      { 
         id: 'deal-montreux',
         title: 'Montreux', 
         subtitle: 'Riviera suisse',
-        image: 'https://images.unsplash.com/photo-1581541709890-f566353a3807?q=80&w=1275&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1581541709890-f566353a3807?q=80&w=1275&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
         id: 'deal-zurich',
@@ -53,13 +53,13 @@ const mockDeals: Deal[] = [
         id: 'deal-interlaken',
         title: 'Interlaken', 
         subtitle: 'Aventures alpines',
-        image: 'https://images.unsplash.com/photo-1612215864092-355d4b25083f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1612215864092-355d4b25083f?q=80&w=1074&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     { 
         id: 'deal-zermatt',
         title: 'Zermatt', 
         subtitle: 'Vue sur le Cervin',
-        image: 'https://images.unsplash.com/photo-1708598660454-4011df6397f0?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: 'https://images.unsplash.com/photo-1708598660454-4011df6397f0?q=80&w=1174&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }
 ];
 
