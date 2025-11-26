@@ -279,3 +279,16 @@ export const SignalIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 19.5h7.5m-7.5-3h7.5m-7.5-3h7.5m-7.5-3h7.5m-7.5-3h7.5" />
     </Icon>
 );
+
+export const ShoppingBagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Icon {...props}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.658-.463 1.243-1.117 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.117 1.007zM8.25 10.5a2.25 2.25 0 00-2.25 2.25v.75" />
+  </Icon>
+);
+
+export const BriefcaseIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Icon {...props}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v-2.25a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75a3.375 3.375 0 00-3.375 3.375v1.5a1.125 1.125 0 01-1.125 1.125h-1.5a3.375 3.375 0 00-3.375 3.375v2.25m17.25-8.625a3.375 3.375 0 00-3.375-3.375H9.75a3.375 3.375 0 00-3.375 3.375m17.25 0v2.25" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 14.15v3.375c0 1.104.896 2 2 2h12.5c1.104 0 2-.896 2-2v-3.375" />
+  </Icon>
+);

@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'en' | 'ar' | 'ru' | 'fr';
@@ -223,6 +224,8 @@ const translations: Translations = {
     days15: "15 Days",
     days30: "30 Days",
     unlimited: "Unlimited",
+    luxuryHotelsAndAccommodations: "Luxury Hotels & Accommodations",
+    stayInGenevaBest: "Stay in Geneva's finest establishments.",
   },
   ar: {
     home: 'الرئيسية',
@@ -438,6 +441,8 @@ const translations: Translations = {
     days15: "15 يومًا",
     days30: "30 يومًا",
     unlimited: "غير محدود",
+    luxuryHotelsAndAccommodations: "فنادق وإقامات فاخرة",
+    stayInGenevaBest: "أقم في أرقى مؤسسات جنيف.",
   },
   ru: {
     home: 'Главная',
@@ -653,6 +658,8 @@ const translations: Translations = {
     days15: "15 дней",
     days30: "30 дней",
     unlimited: "Безлимитный",
+    luxuryHotelsAndAccommodations: "Роскошные отели и размещение",
+    stayInGenevaBest: "Остановитесь в лучших заведениях Женевы.",
   },
   fr: {
     home: 'Accueil',
@@ -677,8 +684,8 @@ const translations: Translations = {
     transfersTitle: "Chauffeur & Transferts",
     transfersSubtitle: "Aéroport & Ville",
     transfersBadge: "Meilleur Prix",
-    vipOnly: "VIP SEULEMENT",
-    vipSubtitle: "Tarifs préférentiels pour les membres",
+    vipOnly: "Services ++",
+    vipSubtitle: "Découvrez nos prestations exclusives",
     seeAll: "Voir tout",
     todaysDeals: "CHOISISSEZ VOTRE DESTINATION",
     testimonials: "Avis des voyageurs",
@@ -868,6 +875,8 @@ const translations: Translations = {
     days15: "15 Jours",
     days30: "30 Jours",
     unlimited: "Illimité",
+    luxuryHotelsAndAccommodations: "Hôtels & Hébergements de Luxe",
+    stayInGenevaBest: "Séjournez dans les plus beaux établissements de Genève.",
   },
 };
 

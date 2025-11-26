@@ -18,6 +18,7 @@ import { GenevaPage } from './components/pages/GenevaPage';
 import { ChamonixPage } from './components/pages/ChamonixPage';
 import { VipPage } from './components/pages/VipPage';
 import { LegalPage } from './components/pages/LegalPage';
+import { YeloPage } from './components/pages/YeloPage';
 import usePersistentState from './hooks/usePersistentState';
 import { LanguageProvider, useTranslation } from './contexts/LanguageContext';
 import { BestRentalDeals } from './components/BestRentalDeals';
@@ -41,28 +42,28 @@ const InnerApp: React.FC = () => {
     {
       title: t('hotelsTitle'),
       subtitle: t('hotelsSubtitle'),
-      image: 'https://images.unsplash.com/photo-1643654282922-a859073eb6a1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1643654282922-a859073eb6a1?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('hotelsBadge'),
       page: 'hotels'
     },
     {
       title: t('carsTitle'),
       subtitle: t('carsSubtitle'),
-      image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('carsBadge'),
       page: 'cars'
     },
     {
       title: t('transfersTitle'),
       subtitle: t('transfersSubtitle'),
-      image: 'https://images.unsplash.com/photo-1627835448014-d4acd4d7cf49?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1627835448014-d4acd4d7cf49?q=80&w=1170&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('transfersBadge'),
       page: 'transfers'
     },
     {
       title: t('experiencesTitle'),
       subtitle: t('experiencesSubtitle'),
-      image: 'https://images.unsplash.com/photo-1601893267113-a432b85910e0?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1601893267113-a432b85910e0?q=80&w=1074&auto=format&fit=crop&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badge1: t('experiencesBadge'),
       page: 'experiences'
     }
@@ -118,6 +119,8 @@ const InnerApp: React.FC = () => {
         return <GenevaPage onBack={() => navigateTo('home')} onNavigate={navigateTo} />;
       case 'chamonix':
         return <ChamonixPage onBack={() => navigateTo('home')} />;
+      case 'yelo':
+        return <YeloPage onBack={() => navigateTo('geneva')} currency={currency} />;
       case 'account':
         return <AccountPage onBack={() => navigateTo('home')} user={user} onLogin={handleLogin} onLogout={handleLogout} onNavigate={navigateTo} />;
       // Legal Pages
@@ -164,9 +167,6 @@ const InnerApp: React.FC = () => {
                 
                 {/* 3. General Experiences */}
                 <GeneralExperiences onNavigate={navigateTo} />
-
-                {/* 4. VIP Only */}
-                <VipExperiences onNavigate={navigateTo} />
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <PromoBanner />
