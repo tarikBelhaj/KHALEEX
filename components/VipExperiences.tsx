@@ -21,7 +21,10 @@ export const VipExperiences: React.FC<VipExperiencesProps> = ({ onNavigate }) =>
         const loadServices = async () => {
             try {
                 const fetchedServices = await fetchVipServices();
-                setVipServices(fetchedServices);
+                // Filter out specific services for the "Services ++" section as requested
+                const excludedIds = ['chocolat-tour-geneve', 'chef-domicile'];
+                const filteredServices = fetchedServices.filter(service => !excludedIds.includes(service.id));
+                setVipServices(filteredServices);
             } catch (error) {
                 console.error("Failed to fetch VIP services:", error);
             } finally {
