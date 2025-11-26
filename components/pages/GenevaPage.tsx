@@ -1,10 +1,12 @@
-
-import React, { useState, useRef } from 'react';
-import { ArrowLeftIcon, ShoppingBagIcon, DumbbellIcon, WhatsAppIcon, CameraIcon, PhotoIcon } from '../Icons';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowLeftIcon, ShoppingBagIcon, DumbbellIcon, WhatsAppIcon, CameraIcon, PhotoIcon, ChevronRightIcon } from '../Icons';
 import usePersistentState from '../../hooks/usePersistentState';
 import { ServiceBookingModal } from '../ServiceBookingModal';
 import { useTranslation } from '../../contexts/LanguageContext';
 import { VipExperiences } from '../VipExperiences';
+import { fetchVipServices, VipService } from '../../services/vipApi';
+import { VipServiceCard } from '../VipServiceCard';
+
 
 interface PageProps {
   onBack: () => void;
@@ -141,11 +143,33 @@ const HomeServiceCard: React.FC<{
     );
 };
 
+const ExperienceCardSkeleton: React.FC = () => (
+    <div className="relative w-72 h-56 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+);
+
 export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
     const { t } = useTranslation();
     const [isAdmin, setIsAdmin] = useState(false);
     const [services, setServices] = usePersistentState<HomeService[]>('genevaServicesData', initialGenevaServicesData);
     const [selectedService, setSelectedService] = useState<HomeService | null>(null);
+    const [experienceServices, setExperienceServices] = useState<VipService[]>([]);
+    const [isLoadingExperiences, setIsLoadingExperiences] = useState(true);
+
+    useEffect(() => {
+        const loadExperienceServices = async () => {
+            setIsLoadingExperiences(true);
+            try {
+                const fetchedServices = await fetchVipServices();
+                const experiences = fetchedServices.filter(s => s.category === 'Experience');
+                setExperienceServices(experiences);
+            } catch (error) {
+                console.error("Failed to fetch VIP experience services:", error);
+            } finally {
+                setIsLoadingExperiences(false);
+            }
+        };
+        loadExperienceServices();
+    }, []);
 
     const handleImageUpload = (index: number, file: File) => {
         const reader = new FileReader();
@@ -233,6 +257,31 @@ export const GenevaPage: React.FC<PageProps> = ({ onBack, onNavigate }) => {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+                
+                {/* Experience Section (NEW) */}
+                <section>
+                    <div className="flex justify-between items-end mb-6 px-1">
+                        <div>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{t('exclusiveExperiences')}</h2>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{t('exclusiveExperiencesSubtitle')}</p>
+                        </div>
+                        <button 
+                            onClick={() => onNavigate('experiences')}
+                            className="text-sm font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1 hover:text-amber-500 transition-colors"
+                          >
+                            {t('discover')} <ChevronRightIcon className="w-4 h-4 rtl:rotate-180" />
+                        </button>
+                    </div>
+                    <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4">
+                        {isLoadingExperiences ? (
+                            Array.from({ length: 2 }).map((_, index) => <ExperienceCardSkeleton key={index} />)
+                        ) : (
+                            experienceServices.map(service => (
+                                <VipServiceCard key={service.id} service={service} />
+                            ))
+                        )}
                     </div>
                 </section>
 

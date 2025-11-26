@@ -9,7 +9,7 @@ interface VipExperiencesProps {
 }
 
 const ExperienceCardSkeleton: React.FC = () => (
-    <div className="relative w-72 md:w-full h-64 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+    <div className="relative w-72 h-56 flex-shrink-0 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
 );
 
 export const VipExperiences: React.FC<VipExperiencesProps> = ({ onNavigate }) => {
@@ -21,8 +21,7 @@ export const VipExperiences: React.FC<VipExperiencesProps> = ({ onNavigate }) =>
         const loadServices = async () => {
             try {
                 const fetchedServices = await fetchVipServices();
-                // On en affiche que 3 ou 4 sur la home
-                setVipServices(fetchedServices.slice(0, 4));
+                setVipServices(fetchedServices);
             } catch (error) {
                 console.error("Failed to fetch VIP services:", error);
             } finally {
@@ -50,12 +49,12 @@ export const VipExperiences: React.FC<VipExperiencesProps> = ({ onNavigate }) =>
           </button>
       </div>
       
-      <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4 md:grid md:grid-cols-3 md:gap-8 md:mx-0 md:px-0 md:overflow-visible">
+      <div className="flex gap-6 overflow-x-auto no-scrollbar -mx-5 px-5 pb-4">
         {isLoading ? (
-             Array.from({ length: 3 }).map((_, index) => <ExperienceCardSkeleton key={index} />)
+            Array.from({ length: 3 }).map((_, index) => <ExperienceCardSkeleton key={index} />)
         ) : (
-            vipServices.map((service) => (
-              <VipServiceCard key={service.id} service={service} />
+            vipServices.map(service => (
+                <VipServiceCard key={service.id} service={service} />
             ))
         )}
       </div>

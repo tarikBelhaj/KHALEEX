@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'en' | 'ar' | 'ru' | 'fr';
@@ -226,6 +225,8 @@ const translations: Translations = {
     unlimited: "Unlimited",
     luxuryHotelsAndAccommodations: "Luxury Hotels & Accommodations",
     stayInGenevaBest: "Stay in Geneva's finest establishments.",
+    exclusiveExperiences: "Exclusive Experiences",
+    exclusiveExperiencesSubtitle: "Unforgettable moments, VIP access.",
   },
   ar: {
     home: 'الرئيسية',
@@ -443,6 +444,8 @@ const translations: Translations = {
     unlimited: "غير محدود",
     luxuryHotelsAndAccommodations: "فنادق وإقامات فاخرة",
     stayInGenevaBest: "أقم في أرقى مؤسسات جنيف.",
+    exclusiveExperiences: "تجارب حصرية",
+    exclusiveExperiencesSubtitle: "لحظات لا تنسى، وصول VIP.",
   },
   ru: {
     home: 'Главная',
@@ -660,6 +663,8 @@ const translations: Translations = {
     unlimited: "Безлимитный",
     luxuryHotelsAndAccommodations: "Роскошные отели и размещение",
     stayInGenevaBest: "Остановитесь в лучших заведениях Женевы.",
+    exclusiveExperiences: "Эксклюзивные впечатления",
+    exclusiveExperiencesSubtitle: "Незабываемые моменты, VIP-доступ.",
   },
   fr: {
     home: 'Accueil',
@@ -877,6 +882,8 @@ const translations: Translations = {
     unlimited: "Illimité",
     luxuryHotelsAndAccommodations: "Hôtels & Hébergements de Luxe",
     stayInGenevaBest: "Séjournez dans les plus beaux établissements de Genève.",
+    exclusiveExperiences: "Expériences Exclusives",
+    exclusiveExperiencesSubtitle: "Des moments inoubliables, accès VIP.",
   },
 };
 

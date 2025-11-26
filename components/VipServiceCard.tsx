@@ -13,7 +13,7 @@ export const VipServiceCard: React.FC<VipServiceCardProps> = ({ service, isFullW
     return (
         <button 
             onClick={() => window.open(service.bookingUrl, '_blank')}
-            className={`relative rounded-2xl overflow-hidden shadow-lg text-white text-left group transition-transform duration-200 hover:scale-105 ${isFullWidth ? 'w-full h-64' : 'w-72 md:w-full h-56 flex-shrink-0'}`}
+            className={`relative rounded-2xl overflow-hidden shadow-lg text-white text-left group transition-transform duration-200 hover:scale-105 ${isFullWidth ? 'w-full h-64' : 'w-72 h-56 flex-shrink-0'}`}
         >
             <img src={service.image} alt={service.title} className="w-full h-full object-cover absolute inset-0 group-hover:scale-110 transition-transform duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
